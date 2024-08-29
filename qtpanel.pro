@@ -26,6 +26,6 @@ SOURCES += src/main.cpp \
 
 CONFIG += link_pkgconfig
 PKGCONFIG += opencv
-INCLUDEPATH += /usr/local/include/opencv2
+INCLUDEPATH += /usr/local/include/opencv2 /usr/include/python3.8
 
 LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_shape

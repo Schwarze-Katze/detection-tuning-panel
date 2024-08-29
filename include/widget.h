@@ -2,12 +2,13 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include <opencv2/opencv.hpp>
+#include <Python.h>
 #include <QWidget>
 #include <QLayout>
 #include <QPushButton>
 #include <QLabel>
 #include <QTimer>
-#include <opencv2/opencv.hpp>
 
 class myWidget : public QWidget {
     Q_OBJECT;

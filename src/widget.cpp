@@ -9,17 +9,17 @@ myWidget::~myWidget() { }
 
 void myWidget::initUI() {
     // 创建网格布局
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    QVBoxLayout* mainLayout = new QVBoxLayout();
     mainLayout->setMargin(10);
     mainLayout->setSpacing(5);
 
-    QHBoxLayout* buttonLayout = new QHBoxLayout(this);
-    QHBoxLayout* videoLayout = new QHBoxLayout(this);
+    QHBoxLayout* buttonLayout = new QHBoxLayout();
+    QHBoxLayout* videoLayout = new QHBoxLayout();
 
     // 创建三个模式切换按钮
-    QPushButton* button1 = new QPushButton("Mode 1");
-    QPushButton* button2 = new QPushButton("Mode 2");
-    QPushButton* button3 = new QPushButton("Mode 3");
+    QPushButton* button1 = new QPushButton(tr("Mode 1"));
+    QPushButton* button2 = new QPushButton(tr("Mode 2"));
+    QPushButton* button3 = new QPushButton(tr("Mode 3"));
 
     // 将按钮添加到布局的第一行
     buttonLayout->addWidget(button1);
