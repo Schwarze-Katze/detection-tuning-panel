@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <package>
-  <name>robot_hmi</name>
+  <name>qt_panel</name>
   <version>0.1.0</version>
   <description>
-
-     robot_hmi
-
+     qt panel
   </description>
   <maintainer email="chengyangkj@gmail.com">chengyangkj</maintainer>
   <author>chengyangkj</author>

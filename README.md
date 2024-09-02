@@ -18,7 +18,7 @@
 ***
 ### 运行方式
 
-rosrun robot_hmi robot_hmi
+rosrun qt_panel qt_panel
 
 ### The interface overview
 ### 界面大致介绍

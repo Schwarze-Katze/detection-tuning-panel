@@ -1,6 +1,7 @@
-#include "../include/robot_hmi/qrviz.hpp"
+#include "../include/qt_panel/qrviz.hpp"
 #include <QDebug>
 #include <QException>
+#include <rviz/view_manager.h>
 qrviz::qrviz(QVBoxLayout* layout)
 {
 
@@ -81,7 +82,7 @@ void qrviz::Set_Goal_Pose()
 void qrviz::Set_FixedFrame(QString Frame_name)
 {
     manager_->setFixedFrame(Frame_name);
-    qDebug()<<manager_->getFixedFrame();
+    qDebug()<<"Fixed frame set to: "<<manager_->getFixedFrame();
 }
 void qrviz::Display_Grid(int Cell_Count,QColor color,bool enable)
 {
@@ -97,6 +98,15 @@ void qrviz::Display_Grid(int Cell_Count,QColor color,bool enable)
     Grid_->subProp("Color")->setValue(color);
     ROS_ASSERT(Grid_!=NULL);
 
+}
+void qrviz::Display_Axes(bool enable) {
+    if (Axes_ != NULL) {
+        delete Axes_;
+        Axes_ = NULL;
+    }
+    Axes_ = manager_->createDisplay("rviz/Axes", "myAxes", enable);
+    Axes_->subProp("Length")->setValue(0.5);
+    ROS_ASSERT(Axes_ != NULL);
 }
 void qrviz::Display_TF(bool enable)
 {
@@ -118,6 +128,44 @@ void qrviz::Display_LaserScan(QString laser_topic,bool enable)
     LaserScan_=manager_->createDisplay("rviz/LaserScan","myLaser",enable);
     LaserScan_->subProp("Topic")->setValue(laser_topic);
     ROS_ASSERT(LaserScan_!=NULL);
+}
+void qrviz::Display_PointCloud2_1(QString pointcloud_topic, bool enable) {
+    if (PointCloud2_1 != NULL) {
+        delete PointCloud2_1;
+        PointCloud2_1 = NULL;
+    }
+    PointCloud2_1 = manager_->createDisplay("rviz/PointCloud2", "myPointCloud2_1", enable);
+    PointCloud2_1->subProp("Topic")->setValue(pointcloud_topic);
+    PointCloud2_1->subProp("Style")->setValue("Points");
+    ROS_ASSERT(PointCloud2_1 != NULL);
+}
+void qrviz::Display_MarkerArray_1(QString markerarray_topic, bool enable) {
+    if (MarkerArray_1 != NULL) {
+        delete MarkerArray_1;
+        MarkerArray_1 = NULL;
+    }
+    MarkerArray_1 = manager_->createDisplay("rviz/MarkerArray", "myMarkerArray1", enable);
+    MarkerArray_1->subProp("Marker Topic")->setValue(markerarray_topic);
+    ROS_ASSERT(MarkerArray_1 != NULL);
+}
+void qrviz::Display_PointCloud2_2(QString pointcloud_topic, bool enable) {
+    if (PointCloud2_2 != NULL) {
+        delete PointCloud2_2;
+        PointCloud2_2 = NULL;
+    }
+    PointCloud2_2 = manager_->createDisplay("rviz/PointCloud2", "myPointCloud2_2", enable);
+    PointCloud2_2->subProp("Topic")->setValue(pointcloud_topic);
+    PointCloud2_2->subProp("Style")->setValue("Points");
+    ROS_ASSERT(PointCloud2_2 != NULL);
+}
+void qrviz::Display_MarkerArray_2(QString markerarray_topic, bool enable) {
+    if (MarkerArray_2 != NULL) {
+        delete MarkerArray_2;
+        MarkerArray_2 = NULL;
+    }
+    MarkerArray_2 = manager_->createDisplay("rviz/MarkerArray", "myMarkerArray2", enable);
+    MarkerArray_2->subProp("Marker Topic")->setValue(markerarray_topic);
+    ROS_ASSERT(MarkerArray_2 != NULL);
 }
 void qrviz::Display_RobotModel(bool enable)
 {

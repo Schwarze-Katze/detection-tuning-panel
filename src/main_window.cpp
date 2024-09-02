@@ -10,15 +10,16 @@
 *****************************************************************************/
 
 #include <QtGui>
+#include <QTreeWidgetItem>
 #include <QMessageBox>
 #include <iostream>
-#include "../include/robot_hmi/main_window.hpp"
+#include "../include/qt_panel/main_window.hpp"
 
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
 
-namespace robot_hmi {
+namespace qt_panel {
 
 using namespace Qt;
 
@@ -87,11 +88,13 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     Global->setExpanded(true);
     //FixFrame
     QTreeWidgetItem* Fixed_frame=new QTreeWidgetItem(QStringList()<<"Fixed Frame");
-    fixed_box=new QComboBox();
-    fixed_box->addItem("map");
+    fixed_box = new QComboBox();
+    fixed_box->addItem("rslidar");
+    fixed_box->addItem("camera_init");
     fixed_box->setMaximumWidth(150);
     fixed_box->setEditable(true);
-    connect(fixed_box,SIGNAL(currentTextChanged(QString)),this,SLOT(slot_treewidget_value_change(QString)));
+    connect(fixed_box, SIGNAL(currentTextChanged(QString)), this, SLOT(slot_treewidget_value_change(QString)));
+    myrviz->Set_FixedFrame(fixed_box->currentText());
     Global->addChild(Fixed_frame);
 
 
@@ -102,12 +105,12 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //设置图标
     Grid->setIcon(0,QIcon("://images/classes/Grid.png"));
     //checkbox
-    QCheckBox* Grid_Check=new QCheckBox();
-    connect(Grid_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_grid(int)));
+    QCheckBox* Grid_Check = new QCheckBox();
+    connect(Grid_Check, SIGNAL(stateChanged(int)), this, SLOT(slot_display_grid(int)));
     //添加top节点
     ui.treeWidget->addTopLevelItem(Grid);
     //添加checkbox
-    ui.treeWidget->setItemWidget(Grid,1,Grid_Check);
+    ui.treeWidget->setItemWidget(Grid, 1, Grid_Check);
     //设置grid默认展开状态
     Grid->setExpanded(true);
 
@@ -115,15 +118,16 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     QTreeWidgetItem* Cell_Count=new QTreeWidgetItem(QStringList()<<"Plane Cell Count");
     Grid->addChild(Cell_Count);
     //CellCount添加SpinBox
-    Cell_Count_Box=new QSpinBox();
-    Cell_Count_Box->setValue(13);
+    Cell_Count_Box = new QSpinBox();
+    Cell_Count_Box->setRange(1, 100000);
+    Cell_Count_Box->setValue(1000);
     //设置Spinbox的宽度
     Cell_Count_Box->setMaximumWidth(150);
     ui.treeWidget->setItemWidget(Cell_Count,1,Cell_Count_Box);
 
     //添加color子节点
     QTreeWidgetItem* Grid_Color=new QTreeWidgetItem(QStringList()<<"Color");
-    Grid->addChild(Grid_Color);
+    // Grid->addChild(Grid_Color);
     //Color添加ComboBox
     Grid_Color_Box=new QComboBox();
     Grid_Color_Box->addItem("160;160;160");
@@ -131,7 +135,19 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     Grid_Color_Box->setEditable(true);
     //设置Combox的宽度
     Grid_Color_Box->setMaximumWidth(150);
-    ui.treeWidget->setItemWidget(Grid_Color,1,Grid_Color_Box);
+    ui.treeWidget->setItemWidget(Grid_Color, 1, Grid_Color_Box);
+    Grid_Check->setChecked(true);
+
+    QTreeWidgetItem* Axes = new QTreeWidgetItem(QStringList() << "Axes");
+    //设置图标
+    Axes->setIcon(0, QIcon("://images/classes/Axes.png"));
+    //checkbox
+    QCheckBox* Axes_Check = new QCheckBox();
+    connect(Axes_Check, SIGNAL(stateChanged(int)), this, SLOT(slot_display_axes(int)));
+    //向Treewidget添加TF Top节点
+    ui.treeWidget->addTopLevelItem(Axes);
+    //向TF添加checkbox
+    ui.treeWidget->setItemWidget(Axes, 1, Axes_Check);
 
     //TF ui
     QTreeWidgetItem* TF=new QTreeWidgetItem(QStringList()<<"TF");
@@ -145,67 +161,146 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //向TF添加checkbox
     ui.treeWidget->setItemWidget(TF,1,TF_Check);
 
-    //LaserScan
-    QTreeWidgetItem* LaserScan=new QTreeWidgetItem(QStringList()<<"LaserScan");
+    // //LaserScan
+    // QTreeWidgetItem* LaserScan=new QTreeWidgetItem(QStringList()<<"LaserScan");
+    // //设置图标
+    // LaserScan->setIcon(0,QIcon("://images/classes/LaserScan.png"));
+    // //checkbox
+    // QCheckBox* Laser_Check=new QCheckBox();
+    // connect(Laser_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_laser(int)));
+    // //向Treewidget添加TF Top节点
+    // ui.treeWidget->addTopLevelItem(LaserScan);
+    // //向TF添加checkbox
+    // ui.treeWidget->setItemWidget(LaserScan,1,Laser_Check);
+    // //laser topic
+    // QTreeWidgetItem* LaserTopic=new QTreeWidgetItem(QStringList()<<"Topic");
+    // Laser_Topic_box=new QComboBox();
+    // Laser_Topic_box->addItem("/scan");
+    // Laser_Topic_box->setEditable(true);
+    // Laser_Topic_box->setMaximumWidth(150);
+    // LaserScan->addChild(LaserTopic);
+    // ui.treeWidget->setItemWidget(LaserTopic, 1, Laser_Topic_box);
+
+    // package folder 1
+    QTreeWidgetItem* DetectPkg1 = new QTreeWidgetItem(QStringList() << "Lidar P80");
+    DetectPkg1->setIcon(0, QIcon("://images/default_package_icon.png"));
+    QCheckBox* DetectPkg_Check1 = new QCheckBox();
+    connect(DetectPkg_Check1, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect1(int)));
+    ui.treeWidget->addTopLevelItem(DetectPkg1);
+    ui.treeWidget->setItemWidget(DetectPkg1, 1, DetectPkg_Check1);
+
+    QTreeWidgetItem* Pointcloud2_1 = new QTreeWidgetItem(QStringList() << "Lidar Pointcloud");
+    Pointcloud2_1->setIcon(0, QIcon("://images/PointCloud2.png"));
+    DetectPkg1->addChild(Pointcloud2_1);
+
+    //pcd topic
+    QTreeWidgetItem* PointCloudTopic_1 = new QTreeWidgetItem(QStringList() << "Topic");
+    PointCloud_Topic_box1 = new QComboBox();
+    PointCloud_Topic_box1->addItem("/rslidar_P80");
+    PointCloud_Topic_box1->setEditable(true);
+    PointCloud_Topic_box1->setMaximumWidth(150);
+    Pointcloud2_1->addChild(PointCloudTopic_1);
+    Pointcloud2_1->setExpanded(true);
+    ui.treeWidget->setItemWidget(PointCloudTopic_1, 1, PointCloud_Topic_box1);
+
+    //MarkerArray
+    QTreeWidgetItem* MarkerArray_1 = new QTreeWidgetItem(QStringList() << "MarkerArray");
     //设置图标
-    LaserScan->setIcon(0,QIcon("://images/classes/LaserScan.png"));
-    //checkbox
-    QCheckBox* Laser_Check=new QCheckBox();
-    connect(Laser_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_laser(int)));
+    MarkerArray_1->setIcon(0, QIcon("://images/classes/MarkerArray.png"));
     //向Treewidget添加TF Top节点
-    ui.treeWidget->addTopLevelItem(LaserScan);
-    //向TF添加checkbox
-    ui.treeWidget->setItemWidget(LaserScan,1,Laser_Check);
-    //laser topic
-    QTreeWidgetItem* LaserTopic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Laser_Topic_box=new QComboBox();
-    Laser_Topic_box->addItem("/scan");
-    Laser_Topic_box->setEditable(true);
-    Laser_Topic_box->setMaximumWidth(150);
-    LaserScan->addChild(LaserTopic);
-    ui.treeWidget->setItemWidget(LaserTopic,1,Laser_Topic_box);
+    DetectPkg1->addChild(MarkerArray_1);
 
-    //RobotModel
-    QTreeWidgetItem* RobotModel=new QTreeWidgetItem(QStringList()<<"RobotModel");
+    //marker topic
+    QTreeWidgetItem* MarkerArrayTopic_1 = new QTreeWidgetItem(QStringList() << "Topic");
+    MarkerArray_Topic_box1 = new QComboBox();
+    MarkerArray_Topic_box1->addItem("/marker_P80");
+    MarkerArray_Topic_box1->setEditable(true);
+    MarkerArray_Topic_box1->setMaximumWidth(150);
+    MarkerArray_1->addChild(MarkerArrayTopic_1);
+    MarkerArray_1->setExpanded(true);
+    ui.treeWidget->setItemWidget(MarkerArrayTopic_1, 1, MarkerArray_Topic_box1);
+
+    //************************* */
+    // package folder 2
+    QTreeWidgetItem* DetectPkg2 = new QTreeWidgetItem(QStringList() << "Lidar M1");
+    DetectPkg2->setIcon(0, QIcon("://images/default_package_icon.png"));
+    QCheckBox* DetectPkg_Check2 = new QCheckBox();
+    connect(DetectPkg_Check2, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect2(int)));
+    ui.treeWidget->addTopLevelItem(DetectPkg2);
+    ui.treeWidget->setItemWidget(DetectPkg2, 1, DetectPkg_Check2);
+
+    QTreeWidgetItem* Pointcloud2_2 = new QTreeWidgetItem(QStringList() << "Lidar Pointcloud");
+    Pointcloud2_2->setIcon(0, QIcon("://images/PointCloud2.png"));
+    DetectPkg2->addChild(Pointcloud2_2);
+
+    //pcd topic
+    QTreeWidgetItem* PointCloudTopic_2 = new QTreeWidgetItem(QStringList() << "Topic");
+    PointCloud_Topic_box2 = new QComboBox();
+    PointCloud_Topic_box2->addItem("/rslidar_M1");
+    PointCloud_Topic_box2->setEditable(true);
+    PointCloud_Topic_box2->setMaximumWidth(150);
+    Pointcloud2_2->addChild(PointCloudTopic_2);
+    Pointcloud2_2->setExpanded(true);
+    ui.treeWidget->setItemWidget(PointCloudTopic_2, 1, PointCloud_Topic_box2);
+
+    //MarkerArray
+    QTreeWidgetItem* MarkerArray_2 = new QTreeWidgetItem(QStringList() << "MarkerArray");
     //设置图标
-    RobotModel->setIcon(0,QIcon("://images/classes/RobotModel.png"));
-    //checkbox
-    QCheckBox* RobotModel_Check=new QCheckBox();
-    connect(RobotModel_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_RobotModel(int)));
+    MarkerArray_2->setIcon(0, QIcon("://images/classes/MarkerArray.png"));
     //向Treewidget添加TF Top节点
-    ui.treeWidget->addTopLevelItem(RobotModel);
-    //向TF添加checkbox
-    ui.treeWidget->setItemWidget(RobotModel,1,RobotModel_Check);
+    DetectPkg2->addChild(MarkerArray_2);
+
+    //marker topic
+    QTreeWidgetItem* MarkerArrayTopic_2 = new QTreeWidgetItem(QStringList() << "Topic");
+    MarkerArray_Topic_box2 = new QComboBox();
+    MarkerArray_Topic_box2->addItem("/marker_M1");
+    MarkerArray_Topic_box2->setEditable(true);
+    MarkerArray_Topic_box2->setMaximumWidth(150);
+    MarkerArray_2->addChild(MarkerArrayTopic_2);
+    MarkerArray_2->setExpanded(true);
+    ui.treeWidget->setItemWidget(MarkerArrayTopic_2, 1, MarkerArray_Topic_box2);
+
+    // //RobotModel
+    // QTreeWidgetItem* RobotModel=new QTreeWidgetItem(QStringList()<<"RobotModel");
+    // //设置图标
+    // RobotModel->setIcon(0,QIcon("://images/classes/RobotModel.png"));
+    // //checkbox
+    // QCheckBox* RobotModel_Check=new QCheckBox();
+    // connect(RobotModel_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_RobotModel(int)));
+    // //向Treewidget添加TF Top节点
+    // ui.treeWidget->addTopLevelItem(RobotModel);
+    // //向TF添加checkbox
+    // ui.treeWidget->setItemWidget(RobotModel,1,RobotModel_Check);
 
 
-    //Map
-    QTreeWidgetItem* Map=new QTreeWidgetItem(QStringList()<<"Map");
-    //设置图标
-    Map->setIcon(0,QIcon("://images/classes/Map.png"));
-    //checkbox
-    QCheckBox* Map_Check=new QCheckBox();
-    connect(Map_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_Map(int)));
-    //向Treewidget添加Map Top节点
-    ui.treeWidget->addTopLevelItem(Map);
-    //向Map添加checkbox
-    ui.treeWidget->setItemWidget(Map,1,Map_Check);
-    //Map topic
-    QTreeWidgetItem* MapTopic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Map_Topic_box=new QComboBox();
-    Map_Topic_box->addItem("/map");
-    Map_Topic_box->setEditable(true);
-    Map_Topic_box->setMaximumWidth(150);
-    Map->addChild(MapTopic);
-    ui.treeWidget->setItemWidget(MapTopic,1,Map_Topic_box);
-    //Map color scheme
-    QTreeWidgetItem* MapColorScheme=new QTreeWidgetItem(QStringList()<<"Color Scheme");
-    Map_Color_Scheme_box=new QComboBox();
-    Map_Color_Scheme_box->addItem("map");
-    Map_Color_Scheme_box->addItem("costmap");
-    Map_Color_Scheme_box->addItem("raw");
-    Map_Color_Scheme_box->setMaximumWidth(150);
-    Map->addChild(MapColorScheme);
-    ui.treeWidget->setItemWidget(MapColorScheme,1,Map_Color_Scheme_box);
+    // //Map
+    // QTreeWidgetItem* Map=new QTreeWidgetItem(QStringList()<<"Map");
+    // //设置图标
+    // Map->setIcon(0,QIcon("://images/classes/Map.png"));
+    // //checkbox
+    // QCheckBox* Map_Check=new QCheckBox();
+    // connect(Map_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_Map(int)));
+    // //向Treewidget添加Map Top节点
+    // ui.treeWidget->addTopLevelItem(Map);
+    // //向Map添加checkbox
+    // ui.treeWidget->setItemWidget(Map,1,Map_Check);
+    // //Map topic
+    // QTreeWidgetItem* MapTopic=new QTreeWidgetItem(QStringList()<<"Topic");
+    // Map_Topic_box=new QComboBox();
+    // Map_Topic_box->addItem("/map");
+    // Map_Topic_box->setEditable(true);
+    // Map_Topic_box->setMaximumWidth(150);
+    // Map->addChild(MapTopic);
+    // ui.treeWidget->setItemWidget(MapTopic,1,Map_Topic_box);
+    // //Map color scheme
+    // QTreeWidgetItem* MapColorScheme=new QTreeWidgetItem(QStringList()<<"Color Scheme");
+    // Map_Color_Scheme_box=new QComboBox();
+    // Map_Color_Scheme_box->addItem("map");
+    // Map_Color_Scheme_box->addItem("costmap");
+    // Map_Color_Scheme_box->addItem("raw");
+    // Map_Color_Scheme_box->setMaximumWidth(150);
+    // Map->addChild(MapColorScheme);
+    // ui.treeWidget->setItemWidget(MapColorScheme,1,Map_Color_Scheme_box);
 
     //Path
     QTreeWidgetItem* Path=new QTreeWidgetItem(QStringList()<<"Path");
@@ -423,6 +518,20 @@ void MainWindow::slot_display_laser(int state)
     bool enable=state>1?true:false;
     myrviz->Display_LaserScan(Laser_Topic_box->currentText(),enable);
 }
+void MainWindow::slot_display_detect1(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_PointCloud2_1(PointCloud_Topic_box1->currentText(), enable);
+    myrviz->Display_MarkerArray_1(MarkerArray_Topic_box1->currentText(), enable);
+}
+void MainWindow::slot_display_detect2(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_PointCloud2_2(PointCloud_Topic_box2->currentText(), enable);
+    myrviz->Display_MarkerArray_2(MarkerArray_Topic_box2->currentText(), enable);
+}
+void MainWindow::slot_display_axes(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_Axes(enable);
+}
 void MainWindow::slot_display_tf(int state)
 {
     bool enable=state>1?true:false;
@@ -602,11 +711,11 @@ void MainWindow::on_actionAbout_triggered() {
 *****************************************************************************/
 
 void MainWindow::ReadSettings() {
-    QSettings settings("Qt-Ros Package", "robot_hmi");
+    QSettings settings("Qt-Ros Package", "qt_panel");
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
-    QString master_url = settings.value("master_url",QString("http://192.168.1.2:11311/")).toString();
-    QString host_url = settings.value("host_url", QString("192.168.1.3")).toString();
+    QString master_url = settings.value("master_url",QString("http://localhost:11311/")).toString();
+    QString host_url = settings.value("host_url", QString("localhost")).toString();
     //QString topic_name = settings.value("topic_name", QString("/chatter")).toString();
     ui.line_edit_master->setText(master_url);
     ui.line_edit_host->setText(host_url);
@@ -623,7 +732,7 @@ void MainWindow::ReadSettings() {
 }
 
 void MainWindow::WriteSettings() {
-    QSettings settings("Qt-Ros Package", "robot_hmi");
+    QSettings settings("Qt-Ros Package", "qt_panel");
     settings.setValue("master_url",ui.line_edit_master->text());
     settings.setValue("host_url",ui.line_edit_host->text());
     //settings.setValue("topic_name",ui.line_edit_topic->text());
@@ -640,5 +749,5 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	QMainWindow::closeEvent(event);
 }
 
-}  // namespace robot_hmi
+}  // namespace qt_panel
 

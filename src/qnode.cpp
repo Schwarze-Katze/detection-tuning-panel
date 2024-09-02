@@ -14,14 +14,14 @@
 #include <ros/network.h>
 #include <string>
 #include <sstream>
-#include "../include/robot_hmi/qnode.hpp"
+#include "../include/qt_panel/qnode.hpp"
 
 
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
 
-namespace robot_hmi {
+namespace qt_panel {
 
 /*****************************************************************************
 ** Implementation
@@ -41,7 +41,7 @@ QNode::~QNode() {
 }
 
 bool QNode::init() {
-	ros::init(init_argc,init_argv,"robot_hmi");
+	ros::init(init_argc,init_argv,"qt_panel");
 	if ( ! ros::master::check() ) {
 		return false;
 	}
@@ -63,7 +63,7 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
 	std::map<std::string,std::string> remappings;
 	remappings["__master"] = master_url;
 	remappings["__hostname"] = host_url;
-	ros::init(remappings,"robot_hmi");
+	ros::init(remappings,"qt_panel");
 	if ( ! ros::master::check() ) {
 		return false;
 	}
@@ -255,4 +255,4 @@ void QNode::log( const LogLevel &level, const std::string &msg) {
 	Q_EMIT loggingUpdated(); // used to readjust the scrollbar
 }
 
-}  // namespace robot_hmi
+}  // namespace qt_panel

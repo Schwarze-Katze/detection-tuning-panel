@@ -1,4 +1,4 @@
-#include "../include/robot_hmi/CCtrlDashBoard.h"
+#include "../include/qt_panel/CCtrlDashBoard.h"
 #include <QPainter>
 #include <QDebug>
 #include <qmath.h>

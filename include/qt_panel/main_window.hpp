@@ -1,12 +1,12 @@
 /**
- * @file /include/robot_hmi/main_window.hpp
+ * @file /include/qt_panel/main_window.hpp
  *
- * @brief Qt based gui for robot_hmi.
+ * @brief Qt based gui for qt_panel.
  *
  * @date November 2010
  **/
-#ifndef robot_hmi_MAIN_WINDOW_H
-#define robot_hmi_MAIN_WINDOW_H
+#ifndef qt_panel_MAIN_WINDOW_H
+#define qt_panel_MAIN_WINDOW_H
 
 /*****************************************************************************
 ** Includes
@@ -25,7 +25,7 @@
 ** Namespace
 *****************************************************************************/
 
-namespace robot_hmi {
+namespace qt_panel {
 
 /*****************************************************************************
 ** Interface [MainWindow]
@@ -69,8 +69,11 @@ public Q_SLOTS:
     void slot_quick_output();
     void slot_treewidget_value_change(QString);
     void slot_display_grid(int);
+    void slot_display_axes(int);
     void slot_display_tf(int);
     void slot_display_laser(int);
+    void slot_display_detect1(int);
+    void slot_display_detect2(int);
     void slot_display_RobotModel(int);
     void slot_display_Map(int);
     void slot_display_Path(int);
@@ -92,6 +95,10 @@ private:
     QSpinBox* Cell_Count_Box;
     QComboBox* Grid_Color_Box;
     QComboBox* Laser_Topic_box;
+    QComboBox* PointCloud_Topic_box1;
+    QComboBox* MarkerArray_Topic_box1;
+    QComboBox* PointCloud_Topic_box2;
+    QComboBox* MarkerArray_Topic_box2;
     QComboBox* Map_Topic_box;
     QComboBox* Map_Color_Scheme_box;
     QComboBox* Path_Topic_box;
@@ -109,8 +116,10 @@ private:
     double return_x;
     double return_y;
     double return_z;
+
+// signals:
 };
 
-}  // namespace robot_hmi
+}  // namespace qt_panel
 
-#endif // robot_hmi_MAIN_WINDOW_H
+#endif // qt_panel_MAIN_WINDOW_H

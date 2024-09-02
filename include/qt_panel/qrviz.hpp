@@ -14,9 +14,14 @@ class qrviz
 public:
     qrviz(QVBoxLayout* layout);
     void Set_FixedFrame(QString Frame_name);
-    void Display_Grid(int Cell_Count,QColor color,bool enable);
+    void Display_Grid(int Cell_Count, QColor color, bool enable);
+    void Display_Axes(bool enable);
     void Display_TF(bool enable);
-    void Display_LaserScan(QString laser_topic,bool enable);
+    void Display_LaserScan(QString laser_topic, bool enable);
+    void Display_PointCloud2_1(QString pointcloud_topic, bool enable);
+    void Display_MarkerArray_1(QString markerarray_topic, bool enable);
+    void Display_PointCloud2_2(QString pointcloud_topic, bool enable);
+    void Display_MarkerArray_2(QString markerarray_topic, bool enable);
     void Display_RobotModel(bool enable);
     void Display_Map(QString topic,QString color_scheme, bool enable);
     void Display_Path(QString topic,QColor color,bool enable);
@@ -28,9 +33,14 @@ private:
     rviz::RenderPanel* render_panel_;
     rviz::VisualizationManager* manager_;
     rviz::ToolManager* tool_manager_;
-    rviz::Display* Grid_=NULL;
+    rviz::Display* Grid_ = NULL;
+    rviz::Display* Axes_ = NULL;
     rviz::Display* TF_=NULL;
-    rviz::Display* LaserScan_=NULL;
+    rviz::Display* LaserScan_ = NULL;
+    rviz::Display* PointCloud2_1 = NULL;
+    rviz::Display* MarkerArray_1 = NULL;
+    rviz::Display* PointCloud2_2 = NULL;
+    rviz::Display* MarkerArray_2 = NULL;
     rviz::Display* RobotModel_=NULL;
     rviz::Display* Map_=NULL;
     rviz::Display* Path_=NULL;

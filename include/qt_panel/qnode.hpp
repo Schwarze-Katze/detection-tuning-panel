@@ -1,5 +1,5 @@
 /**
- * @file /include/robot_hmi/qnode.hpp
+ * @file /include/qt_panel/qnode.hpp
  *
  * @brief Communications central!
  *
@@ -9,8 +9,8 @@
 ** Ifdefs
 *****************************************************************************/
 
-#ifndef robot_hmi_QNODE_HPP_
-#define robot_hmi_QNODE_HPP_
+#ifndef qt_panel_QNODE_HPP_
+#define qt_panel_QNODE_HPP_
 
 /*****************************************************************************
 ** Includes
@@ -39,7 +39,7 @@
 ** Namespaces
 *****************************************************************************/
 
-namespace robot_hmi {
+namespace qt_panel {
 
 /*****************************************************************************
 ** Class
@@ -97,6 +97,6 @@ private:
     QImage Mat2QImage(cv::Mat const& src);
 };
 
-}  // namespace robot_hmi
+}  // namespace qt_panel
 
-#endif /* robot_hmi_QNODE_HPP_ */
+#endif /* qt_panel_QNODE_HPP_ */
