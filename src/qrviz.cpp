@@ -200,4 +200,6 @@ void qrviz::Display_Path(QString topic,QColor color,bool enable)
     ROS_ASSERT(Path_!=NULL);
     Path_->subProp("Topic")->setValue(topic);
     Path_->subProp("Color")->setValue(color);
+    Path_->subProp("Line Style")->setValue("Billboards");
+    Path_->subProp("Line Width")->setValue(0.2);
 }

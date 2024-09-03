@@ -77,13 +77,13 @@ public Q_SLOTS:
     void slot_display_RobotModel(int);
     void slot_display_Map(int);
     void slot_display_Path(int);
-    void slot_set_start_pose();
-    void slot_set_goal_pose();
+    void slot_toggle_m1_det();
+    void slot_toggle_p80_det();
     void slot_display_local_map(int state);
     void slot_display_global_map(int state);
     void slot_update_pos(double,double,double);
-    void slot_set_return_pos();
-    void slot_return();
+    void slot_toggle_m1_slam();
+    void slot_toggle_p80_slam();
 private:
 	Ui::MainWindowDesign ui;
 	QNode qnode;
@@ -95,14 +95,18 @@ private:
     QSpinBox* Cell_Count_Box;
     QComboBox* Grid_Color_Box;
     QComboBox* Laser_Topic_box;
+    QCheckBox* DetectPkg_Check1;
     QComboBox* PointCloud_Topic_box1;
     QComboBox* MarkerArray_Topic_box1;
+    QCheckBox* DetectPkg_Check2;
     QComboBox* PointCloud_Topic_box2;
     QComboBox* MarkerArray_Topic_box2;
     QComboBox* Map_Topic_box;
     QComboBox* Map_Color_Scheme_box;
     QComboBox* Path_Topic_box;
     QComboBox* Path_Color_box;
+    QComboBox* Slam_Odom_Topic_box1;
+    QComboBox* Slam_Odom_Topic_box2;
     //Navigate
     QComboBox* Global_CostMap_Topic_box;
     QComboBox* GlobalMapColorScheme_box;

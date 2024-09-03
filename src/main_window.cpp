@@ -184,7 +184,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     // package folder 1
     QTreeWidgetItem* DetectPkg1 = new QTreeWidgetItem(QStringList() << "Lidar P80");
     DetectPkg1->setIcon(0, QIcon("://images/default_package_icon.png"));
-    QCheckBox* DetectPkg_Check1 = new QCheckBox();
+    DetectPkg_Check1 = new QCheckBox();
     connect(DetectPkg_Check1, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect1(int)));
     ui.treeWidget->addTopLevelItem(DetectPkg1);
     ui.treeWidget->setItemWidget(DetectPkg1, 1, DetectPkg_Check1);
@@ -224,7 +224,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     // package folder 2
     QTreeWidgetItem* DetectPkg2 = new QTreeWidgetItem(QStringList() << "Lidar M1");
     DetectPkg2->setIcon(0, QIcon("://images/default_package_icon.png"));
-    QCheckBox* DetectPkg_Check2 = new QCheckBox();
+    DetectPkg_Check2 = new QCheckBox();
     connect(DetectPkg_Check2, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect2(int)));
     ui.treeWidget->addTopLevelItem(DetectPkg2);
     ui.treeWidget->setItemWidget(DetectPkg2, 1, DetectPkg_Check2);
@@ -316,7 +316,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //Path topic
     QTreeWidgetItem* PathTopic=new QTreeWidgetItem(QStringList()<<"Topic");
     Path_Topic_box=new QComboBox();
-    Path_Topic_box->addItem("/move_base/DWAPlannerROS/local_plan");
+    Path_Topic_box->addItem("/path");
     Path_Topic_box->setEditable(true);
     Path_Topic_box->setMaximumWidth(150);
     Path->addChild(PathTopic);
@@ -332,19 +332,19 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
     //机器人Navigate 相关UI********************************
     //Golabal Map***************************************
-    QTreeWidgetItem* GlobalMap=new QTreeWidgetItem(QStringList()<<"Global Map");
-    GlobalMap->setIcon(0,QIcon("://images/default_package_icon.png"));
-    QCheckBox* GlobalMap_Check=new QCheckBox();
-    connect(GlobalMap_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_global_map(int)));
-    ui.treeWidget->addTopLevelItem(GlobalMap);
-    ui.treeWidget->setItemWidget(GlobalMap,1,GlobalMap_Check);
+    QTreeWidgetItem* SlamPkg1=new QTreeWidgetItem(QStringList()<<"P80 SLAM");
+    SlamPkg1->setIcon(0,QIcon("://images/default_package_icon.png"));
+    QCheckBox* SlamPkg_Check1=new QCheckBox();
+    connect(SlamPkg_Check1,SIGNAL(stateChanged(int)),this,SLOT(slot_display_global_map(int)));
+    ui.treeWidget->addTopLevelItem(SlamPkg1);
+    ui.treeWidget->setItemWidget(SlamPkg1,1,SlamPkg_Check1);
 
     //Global CostMap
     QTreeWidgetItem* Global_CostMap=new QTreeWidgetItem(QStringList()<<"Costmap");
     //设置图标
     Global_CostMap->setIcon(0,QIcon("://images/classes/Map.png"));
     //Global Map添加子节点
-    GlobalMap->addChild(Global_CostMap);
+    // SlamPkg1->addChild(Global_CostMap);
     //Map topic
     QTreeWidgetItem* Global_CostMap_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
     Global_CostMap_Topic_box=new QComboBox();
@@ -368,7 +368,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //设置图标
     Global_Planner->setIcon(0,QIcon("://images/classes/Path.png"));
     //向TGlobal Map添加Path Top节点
-    GlobalMap->addChild(Global_Planner);
+    // SlamPkg1->addChild(Global_Planner);
 
     //Path topic
     QTreeWidgetItem* Global_Planner_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
@@ -385,7 +385,23 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     Global_Planner_Color_box->setEditable(true);
     Global_Planner_Color_box->setMaximumWidth(150);
     Global_Planner->addChild(Global_Planner_Color_Scheme);
-    ui.treeWidget->setItemWidget(Global_Planner_Color_Scheme,1,Global_Planner_Color_box);
+    ui.treeWidget->setItemWidget(Global_Planner_Color_Scheme, 1, Global_Planner_Color_box);
+
+    //Odom
+    QTreeWidgetItem* Slam_Odom1 = new QTreeWidgetItem(QStringList() << "Odometry");
+    //设置图标
+    Slam_Odom1->setIcon(0, QIcon("://images/classes/Odometry.png"));
+    //向TGlobal Map添加Path Top节点
+    SlamPkg1->addChild(Slam_Odom1);
+
+    //Path topic
+    QTreeWidgetItem* Slam_Odom_Topic1 = new QTreeWidgetItem(QStringList() << "Topic");
+    Slam_Odom_Topic_box1 = new QComboBox();
+    Slam_Odom_Topic_box1->addItem("/Odometry");
+    Slam_Odom_Topic_box1->setEditable(true);
+    Slam_Odom_Topic_box1->setMaximumWidth(150);
+    Global_Planner->addChild(Global_Planner_Topic);
+    ui.treeWidget->setItemWidget(Global_Planner_Topic, 1, Slam_Odom_Topic_box1);
 
     //Local Map***********************************************
     QTreeWidgetItem* LocalMap=new QTreeWidgetItem(QStringList()<<"Local Map");
@@ -445,26 +461,26 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
     //connect
     connect(&qnode,SIGNAL(speed_vel(float,float)),this,SLOT(slot_update_dashboard(float,float)));
-    connect(&qnode,SIGNAL(power_vel(float)),this,SLOT(slot_update_power(float)));
+    // connect(&qnode,SIGNAL(power_vel(float)),this,SLOT(slot_update_power(float)));
     connect(&qnode,SIGNAL(image_val(QImage)),this,SLOT(slot_update_image(QImage)));
     connect(&qnode,SIGNAL(position(double,double,double)),this,SLOT(slot_update_pos(double,double,double)));
     connect(ui.pushButton_sub_image,SIGNAL(clicked()),this,SLOT(slot_sub_image()));
     connect(ui.laser_btn,SIGNAL(clicked()),this,SLOT(slot_quick_cmd_clicked()));
     //set start pose
-    connect(ui.set_start_btn,SIGNAL(clicked()),this,SLOT(slot_set_start_pose()));
-    connect(ui.set_goal_btn,SIGNAL(clicked()),this,SLOT(slot_set_goal_pose()));
-    connect(ui.set_return_pos_btn,SIGNAL(clicked()),this,SLOT(slot_set_return_pos()));
-    connect(ui.return_btn,SIGNAL(clicked()),this,SLOT(slot_return()));
+    connect(ui.m1_det_btn,SIGNAL(clicked()),this,SLOT(slot_toggle_m1_det()));
+    connect(ui.p80_det_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_p80_det()));
+    connect(ui.m1_slam_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_m1_slam()));
+    connect(ui.p80_slam_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_p80_slam()));
 
 
 }
-void MainWindow::slot_set_return_pos()
+void MainWindow::slot_toggle_m1_slam()
 {
   ui.return_x->setText(ui.pos_x->text());
    ui.return_y->setText(ui.pos_y->text());
     ui.return_z->setText(ui.pos_z->text());
 }
-void MainWindow::slot_return()
+void MainWindow::slot_toggle_p80_slam()
 {
   qnode.set_goal(ui.return_x->text().toDouble(),ui.return_y->text().toDouble(),ui.return_z->text().toDouble());
 }
@@ -488,13 +504,32 @@ void MainWindow::slot_display_global_map(int state)
       QColor color=QColor(qli[0].toInt(),qli[1].toInt(),qli[2].toInt());
       myrviz->Display_Global_Map(Global_CostMap_Topic_box->currentText(),GlobalMapColorScheme_box->currentText(),Global_Planner_Topic_box->currentText(),color,enable);
 }
-void MainWindow::slot_set_start_pose()
+void MainWindow::slot_toggle_m1_det()
 {
-    myrviz->Set_Start_Pose();
+    switch (DetectPkg_Check2->checkState())
+    {
+    case CheckState::Checked:
+        DetectPkg_Check2->setChecked(false);
+        break;
+    case CheckState::Unchecked:
+        DetectPkg_Check2->setChecked(true);
+        break;
+    default:
+        break;
+    }
 }
-void MainWindow::slot_set_goal_pose()
+void MainWindow::slot_toggle_p80_det()
 {
-    myrviz->Set_Goal_Pose();
+    switch (DetectPkg_Check1->checkState()) {
+    case CheckState::Checked:
+        DetectPkg_Check1->setChecked(false);
+        break;
+    case CheckState::Unchecked:
+        DetectPkg_Check1->setChecked(true);
+        break;
+    default:
+        break;
+    }
 }
 void MainWindow::slot_display_Path(int state)
 {
@@ -572,10 +607,10 @@ void MainWindow::slot_sub_image()
 }
 void MainWindow::slot_update_power(float value)
 {
-      ui.label_power_val->setText(QString::number(value).mid(0,5)+"V");
-      double n=(value-10.5)/(12.5-10.5);
-      int val=n*100;
-      ui.progressBar->setValue(val);
+    //   ui.label_power_val->setText(QString::number(value).mid(0,5)+"V");
+    //   double n=(value-10.5)/(12.5-10.5);
+    //   int val=n*100;
+    //   ui.progressBar->setValue(val);
 }
 void MainWindow::slot_update_dashboard(float x,float y)
 {

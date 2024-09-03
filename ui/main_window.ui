@@ -25,117 +25,6 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_9">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_12">
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>电池电量：</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_9">
-            <property name="minimumSize">
-             <size>
-              <width>32</width>
-              <height>32</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>32</width>
-              <height>32</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap resource="../resources/images.qrc">:/images/power.png</pixmap>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QProgressBar" name="progressBar">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="value">
-             <number>24</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_10">
-            <property name="minimumSize">
-             <size>
-              <width>32</width>
-              <height>32</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>32</width>
-              <height>32</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap resource="../resources/images.qrc">:/images/power-v.png</pixmap>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_power_val">
-            <property name="text">
-             <string>00.00V</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_13">
         <item>
          <widget class="QTabWidget" name="tab_manager">
@@ -160,8 +49,17 @@
              <layout class="QVBoxLayout" name="verticalLayout_13">
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
                 <item>
-                 <widget class="QPushButton" name="set_start_btn">
+                 <widget class="QPushButton" name="m1_det_btn">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>150</width>
@@ -175,7 +73,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>2D Pose Estimate</string>
+                   <string>M1目标检测结果</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
@@ -184,7 +82,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="set_goal_btn">
+                 <widget class="QPushButton" name="p80_det_btn">
                   <property name="minimumSize">
                    <size>
                     <width>150</width>
@@ -198,7 +96,7 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>2D Nav Goal</string>
+                   <string>P80目标检测结果</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
@@ -207,21 +105,21 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="set_return_pos_btn">
+                 <widget class="QPushButton" name="m1_slam_btn">
                   <property name="minimumSize">
                    <size>
                     <width>150</width>
-                    <height>25</height>
+                    <height>0</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>150</width>
-                    <height>25</height>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="text">
-                   <string>设置返航点</string>
+                   <string>M1 SLAM建图</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
@@ -230,21 +128,21 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="return_btn">
+                 <widget class="QPushButton" name="p80_slam_btn">
                   <property name="minimumSize">
                    <size>
                     <width>150</width>
-                    <height>25</height>
+                    <height>0</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>150</width>
-                    <height>25</height>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="text">
-                   <string>返航</string>
+                   <string>P80 SLAM建图</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
