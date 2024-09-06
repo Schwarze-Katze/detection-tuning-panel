@@ -401,7 +401,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     Slam_Odom_Topic_box1->setEditable(true);
     Slam_Odom_Topic_box1->setMaximumWidth(150);
     Slam_Odom1->addChild(Slam_Odom_Topic1);
-    ui.treeWidget->setItemWidget(Slam_Odom1, 1, Slam_Odom_Topic1);
+    ui.treeWidget->setItemWidget(Slam_Odom_Topic1, 1, Slam_Odom_Topic_box1);
 
     //Local Map***********************************************
     QTreeWidgetItem* SlamPkg2=new QTreeWidgetItem(QStringList()<<"M1 SLAM");
