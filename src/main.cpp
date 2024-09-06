@@ -1,10 +1,32 @@
-#include "widget.h"
-#include <qapplication.h>
+/**
+ * @file /src/main.cpp
+ *
+ * @brief Qt based gui.
+ *
+ * @date November 2010
+ **/
+/*****************************************************************************
+** Includes
+*****************************************************************************/
 
-int main(int args, char* argv[]) {
-    QApplication app(args, argv);
-    myWidget w;
-    w.resize(960, 640);
+#include <QtGui>
+#include <QApplication>
+#include "../include/qt_panel/main_window.hpp"
+
+/*****************************************************************************
+** Main
+*****************************************************************************/
+
+int main(int argc, char **argv) {
+
+    /*********************
+    ** Qt
+    **********************/
+    QApplication app(argc, argv);
+    qt_panel::MainWindow w(argc,argv);
     w.show();
-    return app.exec();
+    app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+    int result = app.exec();
+
+	return result;
 }
