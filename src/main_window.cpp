@@ -335,7 +335,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     QTreeWidgetItem* SlamPkg1=new QTreeWidgetItem(QStringList()<<"P80 SLAM");
     SlamPkg1->setIcon(0,QIcon("://images/default_package_icon.png"));
     QCheckBox* SlamPkg_Check1=new QCheckBox();
-    connect(SlamPkg_Check1,SIGNAL(stateChanged(int)),this,SLOT(slot_display_global_map(int)));
+    connect(SlamPkg_Check1,SIGNAL(stateChanged(int)),this,SLOT(slot_toggle_p80_slam(int)));
     ui.treeWidget->addTopLevelItem(SlamPkg1);
     ui.treeWidget->setItemWidget(SlamPkg1,1,SlamPkg_Check1);
 
@@ -394,29 +394,29 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //向TGlobal Map添加Path Top节点
     SlamPkg1->addChild(Slam_Odom1);
 
-    //Path topic
+    //Slam topic
     QTreeWidgetItem* Slam_Odom_Topic1 = new QTreeWidgetItem(QStringList() << "Topic");
     Slam_Odom_Topic_box1 = new QComboBox();
     Slam_Odom_Topic_box1->addItem("/Odometry");
     Slam_Odom_Topic_box1->setEditable(true);
     Slam_Odom_Topic_box1->setMaximumWidth(150);
-    Global_Planner->addChild(Global_Planner_Topic);
-    ui.treeWidget->setItemWidget(Global_Planner_Topic, 1, Slam_Odom_Topic_box1);
+    Slam_Odom1->addChild(Slam_Odom_Topic1);
+    ui.treeWidget->setItemWidget(Slam_Odom1, 1, Slam_Odom_Topic1);
 
     //Local Map***********************************************
-    QTreeWidgetItem* LocalMap=new QTreeWidgetItem(QStringList()<<"Local Map");
-    LocalMap->setIcon(0,QIcon("://images/default_package_icon.png"));
-    QCheckBox* LocalMap_Check=new QCheckBox();
-    connect(LocalMap_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_local_map(int)));
-    ui.treeWidget->addTopLevelItem(LocalMap);
-    ui.treeWidget->setItemWidget(LocalMap,1,LocalMap_Check);
+    QTreeWidgetItem* SlamPkg2=new QTreeWidgetItem(QStringList()<<"M1 SLAM");
+    SlamPkg2->setIcon(0,QIcon("://images/default_package_icon.png"));
+    QCheckBox* SlamPkg_Check2=new QCheckBox();
+    connect(SlamPkg_Check2,SIGNAL(stateChanged(int)),this,SLOT(slot_toggle_m1_slam(int)));
+    ui.treeWidget->addTopLevelItem(SlamPkg2);
+    ui.treeWidget->setItemWidget(SlamPkg2,1,SlamPkg_Check2);
 
     //Local CostMap
     QTreeWidgetItem* Local_CostMap=new QTreeWidgetItem(QStringList()<<"Costmap");
     //设置图标
     Local_CostMap->setIcon(0,QIcon("://images/classes/Map.png"));
     //Local Map添加子节点
-    LocalMap->addChild(Local_CostMap);
+    // SlamPkg2->addChild(Local_CostMap);
     //Map topic
     QTreeWidgetItem* Local_CostMap_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
     Local_CostMap_Topic_box=new QComboBox();
@@ -440,7 +440,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //设置图标
     Local_Planner->setIcon(0,QIcon("://images/classes/Path.png"));
     //向TLocal Map添加Path Top节点
-    LocalMap->addChild(Local_Planner);
+    // SlamPkg2->addChild(Local_Planner);
 
     //Path topic
     QTreeWidgetItem* Local_Planner_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
@@ -457,7 +457,23 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     Local_Planner_Color_box->setEditable(true);
     Local_Planner_Color_box->setMaximumWidth(150);
     Local_Planner->addChild(Local_Planner_Color_Scheme);
-    ui.treeWidget->setItemWidget(Local_Planner_Color_Scheme,1,Local_Planner_Color_box);
+    ui.treeWidget->setItemWidget(Local_Planner_Color_Scheme, 1, Local_Planner_Color_box);
+
+    QTreeWidgetItem* Slam_Odom2 = new QTreeWidgetItem(QStringList() << "Odometry");
+    //设置图标
+    Slam_Odom2->setIcon(0, QIcon("://images/classes/Odometry.png"));
+    //向TLocal Map添加Path Top节点
+    SlamPkg2->addChild(Slam_Odom2);
+
+    //Path topic
+    QTreeWidgetItem* Slam_Odom_Topic2 = new QTreeWidgetItem(QStringList() << "Topic");
+    Slam_Odom_Topic_box2 = new QComboBox();
+    Slam_Odom_Topic_box2->addItem("/Odometry");
+    Slam_Odom_Topic_box2->setEditable(true);
+    Slam_Odom_Topic_box2->setMaximumWidth(150);
+    SlamPkg2->addChild(Slam_Odom_Topic2);
+    ui.treeWidget->setItemWidget(Slam_Odom_Topic2, 1, Slam_Odom_Topic_box2);
+
 
     //connect
     connect(&qnode,SIGNAL(speed_vel(float,float)),this,SLOT(slot_update_dashboard(float,float)));
