@@ -62,7 +62,7 @@
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>120</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -73,11 +73,11 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>M1目标检测结果</string>
+                   <string>M1目标检测</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/classes/SetInitialPose.png</normaloff>:/images/classes/SetInitialPose.png</iconset>
+                    <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -85,7 +85,7 @@
                  <widget class="QPushButton" name="p80_det_btn">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>120</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -96,11 +96,34 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>P80目标检测结果</string>
+                   <string>Ruby目标检测</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/classes/SetGoal.png</normaloff>:/images/classes/SetGoal.png</iconset>
+                    <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>新研目标检测</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -108,7 +131,7 @@
                  <widget class="QPushButton" name="m1_slam_btn">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>120</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -123,7 +146,7 @@
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/set_return.png</normaloff>:/images/set_return.png</iconset>
+                    <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -131,7 +154,7 @@
                  <widget class="QPushButton" name="p80_slam_btn">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>120</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -142,11 +165,34 @@
                    </size>
                   </property>
                   <property name="text">
-                   <string>P80 SLAM建图</string>
+                   <string>Ruby SLAM建图</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/return.png</normaloff>:/images/return.png</iconset>
+                    <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>新研SLAM建图</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -833,8 +879,11 @@
        <layout class="QHBoxLayout" name="horizontalLayout_14">
         <item>
          <widget class="QLabel" name="label_14">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="text">
-           <string>坐标：</string>
+           <string>当前坐标：</string>
           </property>
          </widget>
         </item>
@@ -919,7 +968,7 @@
         <item>
          <widget class="QLabel" name="label_20">
           <property name="text">
-           <string>返航点坐标：</string>
+           <string>目标点坐标：</string>
           </property>
          </widget>
         </item>
@@ -1013,7 +1062,7 @@
      <x>0</x>
      <y>0</y>
      <width>1251</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">

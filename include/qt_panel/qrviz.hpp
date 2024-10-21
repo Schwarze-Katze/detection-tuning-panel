@@ -24,7 +24,13 @@ public:
     void Display_MarkerArray_2(QString markerarray_topic, bool enable);
     void Display_RobotModel(bool enable);
     void Display_Map(QString topic,QString color_scheme, bool enable);
-    void Display_Path(QString topic,QColor color,bool enable);
+    void Display_Path(QString topic, QColor color, bool enable);
+    void Display_SLAM_PointCloud2_Registered_1(QString pointcloud_topic, bool enable);
+    void Display_SLAM_PointCloud2_Queued_1(QString pointcloud_topic, bool enable);
+    void Display_SLAM_Odometry_1(QString odometry_topic, bool enable);
+    void Display_SLAM_PointCloud2_Registered_2(QString pointcloud_topic, bool enable);
+    void Display_SLAM_PointCloud2_Queued_2(QString pointcloud_topic, bool enable);
+    void Display_SLAM_Odometry_2(QString odometry_topic, bool enable);
     void Set_Start_Pose();
     void Set_Goal_Pose();
     void Display_Local_Map(QString map_topic,QString map_color,QString planner_topic,QColor planner_color,bool enable);
@@ -48,7 +54,14 @@ private:
     rviz::Display* Global_Map_=NULL;
     rviz::Display* Global_Planner_=NULL;
     rviz::Display* Local_Map_=NULL;
-    rviz::Display* Local_Planner_=NULL;
+    rviz::Display* Local_Planner_ = NULL;
+
+    rviz::Display* PointCloud2_Registered_1 = NULL;
+    rviz::Display* PointCloud2_Registered_2 = NULL;
+    rviz::Display* PointCloud2_Queued_1 = NULL;
+    rviz::Display* PointCloud2_Queued_2 = NULL;
+    rviz::Display* Odometry_1 = NULL;
+    rviz::Display* Odometry_2 = NULL;
 
 
 };

@@ -82,6 +82,8 @@ public Q_SLOTS:
     void slot_display_local_map(int state);
     void slot_display_global_map(int state);
     void slot_update_pos(double,double,double);
+    void slot_toggle_m1_slam(int state);
+    void slot_toggle_p80_slam(int state);
     void slot_toggle_m1_slam();
     void slot_toggle_p80_slam();
 private:
@@ -105,6 +107,10 @@ private:
     QComboBox* Map_Color_Scheme_box;
     QComboBox* Path_Topic_box;
     QComboBox* Path_Color_box;
+    QCheckBox* SlamPkg_Check1;
+    QCheckBox* SlamPkg_Check2;
+    QComboBox* Slam_Pcd_Reg_Topic_box1;
+    QComboBox* Slam_Pcd_Reg_Topic_box2;
     QComboBox* Slam_Odom_Topic_box1;
     QComboBox* Slam_Odom_Topic_box2;
     //Navigate

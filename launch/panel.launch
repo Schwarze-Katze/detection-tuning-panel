@@ -1,0 +1,6 @@
+<launch>
+    <!-- rviz -->
+    <node name="panel" pkg="qt_panel" type="qt_panel" output="screen"
+        required="true" />
+
+</launch>

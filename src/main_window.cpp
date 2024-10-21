@@ -182,7 +182,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     // ui.treeWidget->setItemWidget(LaserTopic, 1, Laser_Topic_box);
 
     // package folder 1
-    QTreeWidgetItem* DetectPkg1 = new QTreeWidgetItem(QStringList() << "Lidar P80");
+    QTreeWidgetItem* DetectPkg1 = new QTreeWidgetItem(QStringList() << "Lidar Ruby");
     DetectPkg1->setIcon(0, QIcon("://images/default_package_icon.png"));
     DetectPkg_Check1 = new QCheckBox();
     connect(DetectPkg_Check1, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect1(int)));
@@ -260,19 +260,6 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     MarkerArray_2->setExpanded(true);
     ui.treeWidget->setItemWidget(MarkerArrayTopic_2, 1, MarkerArray_Topic_box2);
 
-    // //RobotModel
-    // QTreeWidgetItem* RobotModel=new QTreeWidgetItem(QStringList()<<"RobotModel");
-    // //设置图标
-    // RobotModel->setIcon(0,QIcon("://images/classes/RobotModel.png"));
-    // //checkbox
-    // QCheckBox* RobotModel_Check=new QCheckBox();
-    // connect(RobotModel_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_RobotModel(int)));
-    // //向Treewidget添加TF Top节点
-    // ui.treeWidget->addTopLevelItem(RobotModel);
-    // //向TF添加checkbox
-    // ui.treeWidget->setItemWidget(RobotModel,1,RobotModel_Check);
-
-
     // //Map
     // QTreeWidgetItem* Map=new QTreeWidgetItem(QStringList()<<"Map");
     // //设置图标
@@ -302,90 +289,56 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     // Map->addChild(MapColorScheme);
     // ui.treeWidget->setItemWidget(MapColorScheme,1,Map_Color_Scheme_box);
 
-    //Path
-    QTreeWidgetItem* Path=new QTreeWidgetItem(QStringList()<<"Path");
-    //设置图标
-    Path->setIcon(0,QIcon("://images/classes/Path.png"));
-    //checkbox
-    QCheckBox* Path_Check=new QCheckBox();
-    connect(Path_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_Path(int)));
-    //向Treewidget添加Path Top节点
-    ui.treeWidget->addTopLevelItem(Path);
-    //向Path添加checkbox
-    ui.treeWidget->setItemWidget(Path,1,Path_Check);
-    //Path topic
-    QTreeWidgetItem* PathTopic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Path_Topic_box=new QComboBox();
-    Path_Topic_box->addItem("/path");
-    Path_Topic_box->setEditable(true);
-    Path_Topic_box->setMaximumWidth(150);
-    Path->addChild(PathTopic);
-    ui.treeWidget->setItemWidget(PathTopic,1,Path_Topic_box);
-    //Path color scheme
-    QTreeWidgetItem* PathColorScheme=new QTreeWidgetItem(QStringList()<<"Color");
-    Path_Color_box=new QComboBox();
-    Path_Color_box->addItem("0;12;255");
-    Path_Color_box->setEditable(true);
-    Path_Color_box->setMaximumWidth(150);
-    Path->addChild(PathColorScheme);
-    ui.treeWidget->setItemWidget(PathColorScheme,1,Path_Color_box);
+    // //Path
+    // QTreeWidgetItem* Path=new QTreeWidgetItem(QStringList()<<"Path");
+    // //设置图标
+    // Path->setIcon(0,QIcon("://images/classes/Path.png"));
+    // //checkbox
+    // QCheckBox* Path_Check=new QCheckBox();
+    // connect(Path_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_Path(int)));
+    // //向Treewidget添加Path Top节点
+    // ui.treeWidget->addTopLevelItem(Path);
+    // //向Path添加checkbox
+    // ui.treeWidget->setItemWidget(Path,1,Path_Check);
+    // //Path topic
+    // QTreeWidgetItem* PathTopic=new QTreeWidgetItem(QStringList()<<"Topic");
+    // Path_Topic_box=new QComboBox();
+    // Path_Topic_box->addItem("/path");
+    // Path_Topic_box->setEditable(true);
+    // Path_Topic_box->setMaximumWidth(150);
+    // Path->addChild(PathTopic);
+    // ui.treeWidget->setItemWidget(PathTopic,1,Path_Topic_box);
+    // //Path color scheme
+    // QTreeWidgetItem* PathColorScheme=new QTreeWidgetItem(QStringList()<<"Color");
+    // Path_Color_box=new QComboBox();
+    // Path_Color_box->addItem("0;12;255");
+    // Path_Color_box->setEditable(true);
+    // Path_Color_box->setMaximumWidth(150);
+    // Path->addChild(PathColorScheme);
+    // ui.treeWidget->setItemWidget(PathColorScheme,1,Path_Color_box);
 
-    //机器人Navigate 相关UI********************************
-    //Golabal Map***************************************
-    QTreeWidgetItem* SlamPkg1=new QTreeWidgetItem(QStringList()<<"P80 SLAM");
+    //SLAM 相关UI********************************
+    //slam plus***************************************
+    QTreeWidgetItem* SlamPkg1=new QTreeWidgetItem(QStringList()<<"Ruby SLAM");
     SlamPkg1->setIcon(0,QIcon("://images/default_package_icon.png"));
-    QCheckBox* SlamPkg_Check1=new QCheckBox();
+    SlamPkg_Check1 = new QCheckBox();
     connect(SlamPkg_Check1,SIGNAL(stateChanged(int)),this,SLOT(slot_toggle_p80_slam(int)));
     ui.treeWidget->addTopLevelItem(SlamPkg1);
-    ui.treeWidget->setItemWidget(SlamPkg1,1,SlamPkg_Check1);
+    ui.treeWidget->setItemWidget(SlamPkg1, 1, SlamPkg_Check1);
 
-    //Global CostMap
-    QTreeWidgetItem* Global_CostMap=new QTreeWidgetItem(QStringList()<<"Costmap");
-    //设置图标
-    Global_CostMap->setIcon(0,QIcon("://images/classes/Map.png"));
-    //Global Map添加子节点
-    // SlamPkg1->addChild(Global_CostMap);
-    //Map topic
-    QTreeWidgetItem* Global_CostMap_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Global_CostMap_Topic_box=new QComboBox();
-    Global_CostMap_Topic_box->addItem("/move_base/global_costmap/costmap");
-    Global_CostMap_Topic_box->setEditable(true);
-    Global_CostMap_Topic_box->setMaximumWidth(150);
-    Global_CostMap->addChild(Global_CostMap_Topic);
-    ui.treeWidget->setItemWidget(Global_CostMap_Topic,1,Global_CostMap_Topic_box);
-    //Map color scheme
-    QTreeWidgetItem* GlobalMapColorScheme=new QTreeWidgetItem(QStringList()<<"Color Scheme");
-    GlobalMapColorScheme_box=new QComboBox();
-    GlobalMapColorScheme_box->addItem("costmap");
-    GlobalMapColorScheme_box->addItem("map");
-    GlobalMapColorScheme_box->addItem("raw");
-    GlobalMapColorScheme_box->setMaximumWidth(150);
-    Global_CostMap->addChild(GlobalMapColorScheme);
-    ui.treeWidget->setItemWidget(GlobalMapColorScheme,1,GlobalMapColorScheme_box);
+    QTreeWidgetItem* Slam_Pointcloud2_Registered_1 = new QTreeWidgetItem(QStringList() << "Pointcloud");
+    Slam_Pointcloud2_Registered_1->setIcon(0, QIcon("://images/PointCloud2.png"));
+    SlamPkg1->addChild(Slam_Pointcloud2_Registered_1);
 
-    //Global Planner
-    QTreeWidgetItem* Global_Planner=new QTreeWidgetItem(QStringList()<<"Planner");
-    //设置图标
-    Global_Planner->setIcon(0,QIcon("://images/classes/Path.png"));
-    //向TGlobal Map添加Path Top节点
-    // SlamPkg1->addChild(Global_Planner);
-
-    //Path topic
-    QTreeWidgetItem* Global_Planner_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Global_Planner_Topic_box=new QComboBox();
-    Global_Planner_Topic_box->addItem("/move_base/DWAPlannerROS/global_plan");
-    Global_Planner_Topic_box->setEditable(true);
-    Global_Planner_Topic_box->setMaximumWidth(150);
-    Global_Planner->addChild(Global_Planner_Topic);
-    ui.treeWidget->setItemWidget(Global_Planner_Topic,1,Global_Planner_Topic_box);
-    //Path color scheme
-    QTreeWidgetItem* Global_Planner_Color_Scheme=new QTreeWidgetItem(QStringList()<<"Color");
-    Global_Planner_Color_box=new QComboBox();
-    Global_Planner_Color_box->addItem("255;0;0");
-    Global_Planner_Color_box->setEditable(true);
-    Global_Planner_Color_box->setMaximumWidth(150);
-    Global_Planner->addChild(Global_Planner_Color_Scheme);
-    ui.treeWidget->setItemWidget(Global_Planner_Color_Scheme, 1, Global_Planner_Color_box);
+    //pcd topic
+    QTreeWidgetItem* Slam_Pointcloud2_Registered_Topic_1 = new QTreeWidgetItem(QStringList() << "Topic");
+    Slam_Pcd_Reg_Topic_box1 = new QComboBox();
+    Slam_Pcd_Reg_Topic_box1->addItem("/pointcloud_registered");
+    Slam_Pcd_Reg_Topic_box1->setEditable(true);
+    Slam_Pcd_Reg_Topic_box1->setMaximumWidth(150);
+    Slam_Pointcloud2_Registered_1->addChild(Slam_Pointcloud2_Registered_Topic_1);
+    Slam_Pointcloud2_Registered_1->setExpanded(true);
+    ui.treeWidget->setItemWidget(Slam_Pointcloud2_Registered_Topic_1, 1, Slam_Pcd_Reg_Topic_box1);
 
     //Odom
     QTreeWidgetItem* Slam_Odom1 = new QTreeWidgetItem(QStringList() << "Odometry");
@@ -401,63 +354,30 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     Slam_Odom_Topic_box1->setEditable(true);
     Slam_Odom_Topic_box1->setMaximumWidth(150);
     Slam_Odom1->addChild(Slam_Odom_Topic1);
+    Slam_Odom1->setExpanded(true);
     ui.treeWidget->setItemWidget(Slam_Odom_Topic1, 1, Slam_Odom_Topic_box1);
 
-    //Local Map***********************************************
+    //slam2***********************************************
     QTreeWidgetItem* SlamPkg2=new QTreeWidgetItem(QStringList()<<"M1 SLAM");
     SlamPkg2->setIcon(0,QIcon("://images/default_package_icon.png"));
-    QCheckBox* SlamPkg_Check2=new QCheckBox();
+    SlamPkg_Check2 = new QCheckBox();
     connect(SlamPkg_Check2,SIGNAL(stateChanged(int)),this,SLOT(slot_toggle_m1_slam(int)));
     ui.treeWidget->addTopLevelItem(SlamPkg2);
-    ui.treeWidget->setItemWidget(SlamPkg2,1,SlamPkg_Check2);
+    ui.treeWidget->setItemWidget(SlamPkg2, 1, SlamPkg_Check2);
 
-    //Local CostMap
-    QTreeWidgetItem* Local_CostMap=new QTreeWidgetItem(QStringList()<<"Costmap");
-    //设置图标
-    Local_CostMap->setIcon(0,QIcon("://images/classes/Map.png"));
-    //Local Map添加子节点
-    // SlamPkg2->addChild(Local_CostMap);
-    //Map topic
-    QTreeWidgetItem* Local_CostMap_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Local_CostMap_Topic_box=new QComboBox();
-    Local_CostMap_Topic_box->addItem("/move_base/local_costmap/costmap");
-    Local_CostMap_Topic_box->setEditable(true);
-    Local_CostMap_Topic_box->setMaximumWidth(150);
-    Local_CostMap->addChild(Local_CostMap_Topic);
-    ui.treeWidget->setItemWidget(Local_CostMap_Topic,1,Local_CostMap_Topic_box);
-    //Map color scheme
-    QTreeWidgetItem* LocalMapColorScheme=new QTreeWidgetItem(QStringList()<<"Color Scheme");
-    LocalMapColorScheme_box=new QComboBox();
-    LocalMapColorScheme_box->addItem("costmap");
-    LocalMapColorScheme_box->addItem("map");
-    LocalMapColorScheme_box->addItem("raw");
-    LocalMapColorScheme_box->setMaximumWidth(150);
-    Local_CostMap->addChild(LocalMapColorScheme);
-    ui.treeWidget->setItemWidget(LocalMapColorScheme,1,LocalMapColorScheme_box);
+    QTreeWidgetItem* Slam_Pointcloud2_Registered_2 = new QTreeWidgetItem(QStringList() << "Pointcloud");
+    Slam_Pointcloud2_Registered_2->setIcon(0, QIcon("://images/PointCloud2.png"));
+    SlamPkg2->addChild(Slam_Pointcloud2_Registered_2);
 
-    //Local Planner
-    QTreeWidgetItem* Local_Planner=new QTreeWidgetItem(QStringList()<<"Planner");
-    //设置图标
-    Local_Planner->setIcon(0,QIcon("://images/classes/Path.png"));
-    //向TLocal Map添加Path Top节点
-    // SlamPkg2->addChild(Local_Planner);
-
-    //Path topic
-    QTreeWidgetItem* Local_Planner_Topic=new QTreeWidgetItem(QStringList()<<"Topic");
-    Local_Planner_Topic_box=new QComboBox();
-    Local_Planner_Topic_box->addItem("/move_base/DWAPlannerROS/local_plan");
-    Local_Planner_Topic_box->setEditable(true);
-    Local_Planner_Topic_box->setMaximumWidth(150);
-    Local_Planner->addChild(Local_Planner_Topic);
-    ui.treeWidget->setItemWidget(Local_Planner_Topic,1,Local_Planner_Topic_box);
-    //Path color scheme
-    QTreeWidgetItem* Local_Planner_Color_Scheme=new QTreeWidgetItem(QStringList()<<"Color");
-    Local_Planner_Color_box=new QComboBox();
-    Local_Planner_Color_box->addItem("0;12;255");
-    Local_Planner_Color_box->setEditable(true);
-    Local_Planner_Color_box->setMaximumWidth(150);
-    Local_Planner->addChild(Local_Planner_Color_Scheme);
-    ui.treeWidget->setItemWidget(Local_Planner_Color_Scheme, 1, Local_Planner_Color_box);
+    //pcd topic
+    QTreeWidgetItem* Slam_Pointcloud2_Registered_Topic_2 = new QTreeWidgetItem(QStringList() << "Topic");
+    Slam_Pcd_Reg_Topic_box2 = new QComboBox();
+    Slam_Pcd_Reg_Topic_box2->addItem("/pointcloud_registered");
+    Slam_Pcd_Reg_Topic_box2->setEditable(true);
+    Slam_Pcd_Reg_Topic_box2->setMaximumWidth(150);
+    Slam_Pointcloud2_Registered_2->addChild(Slam_Pointcloud2_Registered_Topic_2);
+    Slam_Pointcloud2_Registered_2->setExpanded(true);
+    ui.treeWidget->setItemWidget(Slam_Pointcloud2_Registered_Topic_2, 1, Slam_Pcd_Reg_Topic_box2);
 
     QTreeWidgetItem* Slam_Odom2 = new QTreeWidgetItem(QStringList() << "Odometry");
     //设置图标
@@ -465,13 +385,14 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //向TLocal Map添加Path Top节点
     SlamPkg2->addChild(Slam_Odom2);
 
-    //Path topic
+    //Odom topic
     QTreeWidgetItem* Slam_Odom_Topic2 = new QTreeWidgetItem(QStringList() << "Topic");
     Slam_Odom_Topic_box2 = new QComboBox();
     Slam_Odom_Topic_box2->addItem("/Odometry");
     Slam_Odom_Topic_box2->setEditable(true);
     Slam_Odom_Topic_box2->setMaximumWidth(150);
-    SlamPkg2->addChild(Slam_Odom_Topic2);
+    Slam_Odom2->addChild(Slam_Odom_Topic2);
+    Slam_Odom2->setExpanded(true);
     ui.treeWidget->setItemWidget(Slam_Odom_Topic2, 1, Slam_Odom_Topic_box2);
 
 
@@ -490,15 +411,41 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
 
 }
-void MainWindow::slot_toggle_m1_slam()
-{
-  ui.return_x->setText(ui.pos_x->text());
-   ui.return_y->setText(ui.pos_y->text());
-    ui.return_z->setText(ui.pos_z->text());
+void MainWindow::slot_toggle_m1_slam() {
+    switch (SlamPkg_Check2->checkState()) {
+    case CheckState::Checked:
+        SlamPkg_Check2->setChecked(false);
+        break;
+    case CheckState::Unchecked:
+        SlamPkg_Check2->setChecked(true);
+        break;
+    default:
+        break;
+    }
 }
-void MainWindow::slot_toggle_p80_slam()
-{
-  qnode.set_goal(ui.return_x->text().toDouble(),ui.return_y->text().toDouble(),ui.return_z->text().toDouble());
+void MainWindow::slot_toggle_p80_slam() {
+    switch (SlamPkg_Check1->checkState()) {
+    case CheckState::Checked:
+        SlamPkg_Check1->setChecked(false);
+        break;
+    case CheckState::Unchecked:
+        SlamPkg_Check1->setChecked(true);
+        break;
+    default:
+        break;
+    }
+}
+void MainWindow::slot_toggle_m1_slam(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_SLAM_PointCloud2_Registered_2(Slam_Pcd_Reg_Topic_box2->currentText(), enable);
+    myrviz->Display_SLAM_PointCloud2_Queued_2(Slam_Pcd_Reg_Topic_box2->currentText(), enable);
+    myrviz->Display_SLAM_Odometry_2(Slam_Odom_Topic_box2->currentText(), enable);
+}
+void MainWindow::slot_toggle_p80_slam(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_SLAM_PointCloud2_Registered_1(Slam_Pcd_Reg_Topic_box1->currentText(), enable);
+    myrviz->Display_SLAM_PointCloud2_Queued_1(Slam_Pcd_Reg_Topic_box1->currentText(), enable);
+    myrviz->Display_SLAM_Odometry_1(Slam_Odom_Topic_box1->currentText(), enable);
 }
 void MainWindow::slot_update_pos(double x,double y,double z)
 {
