@@ -22,6 +22,8 @@ public:
     void Display_MarkerArray_1(QString markerarray_topic, bool enable);
     void Display_PointCloud2_2(QString pointcloud_topic, bool enable);
     void Display_MarkerArray_2(QString markerarray_topic, bool enable);
+    void Display_PointCloud2_3(QString pointcloud_topic, bool enable);
+    void Display_MarkerArray_3(QString markerarray_topic, bool enable);
     void Display_RobotModel(bool enable);
     void Display_Map(QString topic,QString color_scheme, bool enable);
     void Display_Path(QString topic, QColor color, bool enable);
@@ -31,6 +33,9 @@ public:
     void Display_SLAM_PointCloud2_Registered_2(QString pointcloud_topic, bool enable);
     void Display_SLAM_PointCloud2_Queued_2(QString pointcloud_topic, bool enable);
     void Display_SLAM_Odometry_2(QString odometry_topic, bool enable);
+    void Display_SLAM_PointCloud2_Registered_3(QString pointcloud_topic, bool enable);
+    void Display_SLAM_PointCloud2_Queued_3(QString pointcloud_topic, bool enable);
+    void Display_SLAM_Odometry_3(QString odometry_topic, bool enable);
     void Set_Start_Pose();
     void Set_Goal_Pose();
     void Display_Local_Map(QString map_topic,QString map_color,QString planner_topic,QColor planner_color,bool enable);
@@ -47,6 +52,8 @@ private:
     rviz::Display* MarkerArray_1 = NULL;
     rviz::Display* PointCloud2_2 = NULL;
     rviz::Display* MarkerArray_2 = NULL;
+    rviz::Display* PointCloud2_3 = NULL;
+    rviz::Display* MarkerArray_3 = NULL;
     rviz::Display* RobotModel_=NULL;
     rviz::Display* Map_=NULL;
     rviz::Display* Path_=NULL;
@@ -58,10 +65,13 @@ private:
 
     rviz::Display* PointCloud2_Registered_1 = NULL;
     rviz::Display* PointCloud2_Registered_2 = NULL;
+    rviz::Display* PointCloud2_Registered_3 = NULL;
     rviz::Display* PointCloud2_Queued_1 = NULL;
     rviz::Display* PointCloud2_Queued_2 = NULL;
+    rviz::Display* PointCloud2_Queued_3 = NULL;
     rviz::Display* Odometry_1 = NULL;
     rviz::Display* Odometry_2 = NULL;
+    rviz::Display* Odometry_3 = NULL;
 
 
 };

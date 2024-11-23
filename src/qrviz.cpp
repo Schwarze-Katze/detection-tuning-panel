@@ -167,6 +167,25 @@ void qrviz::Display_MarkerArray_2(QString markerarray_topic, bool enable) {
     MarkerArray_2->subProp("Marker Topic")->setValue(markerarray_topic);
     ROS_ASSERT(MarkerArray_2 != NULL);
 }
+void qrviz::Display_PointCloud2_3(QString pointcloud_topic, bool enable) {
+    if (PointCloud2_3 != NULL) {
+        delete PointCloud2_3;
+        PointCloud2_3 = NULL;
+    }
+    PointCloud2_3 = manager_->createDisplay("rviz/PointCloud2", "myPointCloud2_3", enable);
+    PointCloud2_3->subProp("Topic")->setValue(pointcloud_topic);
+    PointCloud2_3->subProp("Style")->setValue("Points");
+    ROS_ASSERT(PointCloud2_3 != NULL);
+}
+void qrviz::Display_MarkerArray_3(QString markerarray_topic, bool enable) {
+    if (MarkerArray_3 != NULL) {
+        delete MarkerArray_3;
+        MarkerArray_3 = NULL;
+    }
+    MarkerArray_3 = manager_->createDisplay("rviz/MarkerArray", "myMarkerArray2", enable);
+    MarkerArray_3->subProp("Marker Topic")->setValue(markerarray_topic);
+    ROS_ASSERT(MarkerArray_3 != NULL);
+}
 void qrviz::Display_RobotModel(bool enable)
 {
     if(RobotModel_!=NULL)
@@ -274,4 +293,40 @@ void qrviz::Display_SLAM_Odometry_2(QString odometry_topic, bool enable) {
     Odometry_2->subProp("Topic")->setValue(odometry_topic);
     Odometry_2->subProp("Shape")->subProp("Axes Length")->setValue(0.5);
     ROS_ASSERT(Odometry_2 != NULL);
+}
+
+void qrviz::Display_SLAM_PointCloud2_Registered_3(QString pointcloud_topic, bool enable) {
+    if (PointCloud2_Registered_3 != NULL) {
+        delete PointCloud2_Registered_3;
+        PointCloud2_Registered_3 = NULL;
+    }
+
+    PointCloud2_Registered_3 = manager_->createDisplay("rviz/PointCloud2", "myPointCloud2_Registered_3", enable);
+    PointCloud2_Registered_3->subProp("Topic")->setValue(pointcloud_topic);
+    PointCloud2_Registered_3->subProp("Style")->setValue("Points");
+    ROS_ASSERT(PointCloud2_Registered_3 != NULL);
+}
+
+void qrviz::Display_SLAM_PointCloud2_Queued_3(QString pointcloud_topic, bool enable) {
+    if (PointCloud2_Registered_3 != NULL) {
+        delete PointCloud2_Registered_3;
+        PointCloud2_Registered_3 = NULL;
+    }
+
+    PointCloud2_Registered_3 = manager_->createDisplay("rviz/PointCloud2", "myPointCloud2_Registered_3", enable);
+    PointCloud2_Registered_3->subProp("Topic")->setValue(pointcloud_topic);
+    PointCloud2_Registered_3->subProp("Style")->setValue("Points");
+    PointCloud2_Registered_3->subProp("Queue Size")->setValue(100000);
+    ROS_ASSERT(PointCloud2_Registered_3 != NULL);
+}
+
+void qrviz::Display_SLAM_Odometry_3(QString odometry_topic, bool enable) {
+    if (Odometry_3 != NULL) {
+        delete Odometry_3;
+        Odometry_3 = NULL;
+    }
+    Odometry_3 = manager_->createDisplay("rviz/Odometry", "myOdometry_3", enable);
+    Odometry_3->subProp("Topic")->setValue(odometry_topic);
+    Odometry_3->subProp("Shape")->subProp("Axes Length")->setValue(0.5);
+    ROS_ASSERT(Odometry_3 != NULL);
 }

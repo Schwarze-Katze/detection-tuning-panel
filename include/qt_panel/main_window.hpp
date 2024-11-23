@@ -74,18 +74,24 @@ public Q_SLOTS:
     void slot_display_laser(int);
     void slot_display_detect1(int);
     void slot_display_detect2(int);
+    void slot_display_detect3(int);
     void slot_display_RobotModel(int);
     void slot_display_Map(int);
     void slot_display_Path(int);
+    void slot_toggle_det();
     void slot_toggle_m1_det();
     void slot_toggle_p80_det();
+    void slot_toggle_new_det();
     void slot_display_local_map(int state);
     void slot_display_global_map(int state);
     void slot_update_pos(double,double,double);
     void slot_toggle_m1_slam(int state);
     void slot_toggle_p80_slam(int state);
+    void slot_toggle_new_slam(int state);
+    void slot_toggle_slam();
     void slot_toggle_m1_slam();
     void slot_toggle_p80_slam();
+    void slot_toggle_new_slam();
 private:
 	Ui::MainWindowDesign ui;
 	QNode qnode;
@@ -103,16 +109,22 @@ private:
     QCheckBox* DetectPkg_Check2;
     QComboBox* PointCloud_Topic_box2;
     QComboBox* MarkerArray_Topic_box2;
+    QCheckBox* DetectPkg_Check3;
+    QComboBox* PointCloud_Topic_box3;
+    QComboBox* MarkerArray_Topic_box3;
     QComboBox* Map_Topic_box;
     QComboBox* Map_Color_Scheme_box;
     QComboBox* Path_Topic_box;
     QComboBox* Path_Color_box;
     QCheckBox* SlamPkg_Check1;
     QCheckBox* SlamPkg_Check2;
+    QCheckBox* SlamPkg_Check3;
     QComboBox* Slam_Pcd_Reg_Topic_box1;
     QComboBox* Slam_Pcd_Reg_Topic_box2;
+    QComboBox* Slam_Pcd_Reg_Topic_box3;
     QComboBox* Slam_Odom_Topic_box1;
     QComboBox* Slam_Odom_Topic_box2;
+    QComboBox* Slam_Odom_Topic_box3;
     //Navigate
     QComboBox* Global_CostMap_Topic_box;
     QComboBox* GlobalMapColorScheme_box;

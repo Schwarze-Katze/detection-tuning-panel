@@ -51,16 +51,16 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     if ( ui.checkbox_remember_settings->isChecked() ) {
         on_button_connect_clicked(true);
     }
-    connect(ui.horizontalSlider_linera,SIGNAL(valueChanged(int)),this,SLOT(slot_linera_value_change(int)));
-    connect(ui.horizontalSlider_raw,SIGNAL(valueChanged(int)),this,SLOT(slot_raw_value_change(int)));
-    connect(ui.pushButton_i,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_j,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_l,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_n,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_m,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_br,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_u,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
-    connect(ui.pushButton_o,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.horizontalSlider_linera,SIGNAL(valueChanged(int)),this,SLOT(slot_linera_value_change(int)));
+    // connect(ui.horizontalSlider_raw,SIGNAL(valueChanged(int)),this,SLOT(slot_raw_value_change(int)));
+    // connect(ui.pushButton_i,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_j,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_l,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_n,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_m,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_br,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_u,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
+    // connect(ui.pushButton_o,SIGNAL(clicked()),this,SLOT(slot_pushbtn_click()));
 
 
     //init ui
@@ -70,8 +70,8 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     speed_y_dashBoard->setGeometry(ui.widget_speed_y->rect());
     speed_x_dashBoard->setValue(0);
     speed_y_dashBoard->setValue(0);
-    ui.horizontalSlider_linera->setValue(50);
-    ui.horizontalSlider_raw->setValue(50);
+    // ui.horizontalSlider_linera->setValue(50);
+    // ui.horizontalSlider_raw->setValue(50);
 
 //    ui.treeWidget->setWindowTitle("Display");
 //    ui.treeWidget->setWindowIcon(QIcon("://images/classes/Displays.svg"));
@@ -182,8 +182,8 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     // ui.treeWidget->setItemWidget(LaserTopic, 1, Laser_Topic_box);
 
     // package folder 1
-    QTreeWidgetItem* DetectPkg1 = new QTreeWidgetItem(QStringList() << "Lidar Ruby");
-    DetectPkg1->setIcon(0, QIcon("://images/default_package_icon.png"));
+    QTreeWidgetItem* DetectPkg1 = new QTreeWidgetItem(QStringList() << "Ruby Detect");
+    DetectPkg1->setIcon(0, QIcon("://images/visibility.svg"));
     DetectPkg_Check1 = new QCheckBox();
     connect(DetectPkg_Check1, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect1(int)));
     ui.treeWidget->addTopLevelItem(DetectPkg1);
@@ -222,8 +222,8 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
     //************************* */
     // package folder 2
-    QTreeWidgetItem* DetectPkg2 = new QTreeWidgetItem(QStringList() << "Lidar M1");
-    DetectPkg2->setIcon(0, QIcon("://images/default_package_icon.png"));
+    QTreeWidgetItem* DetectPkg2 = new QTreeWidgetItem(QStringList() << "M1 Detect");
+    DetectPkg2->setIcon(0, QIcon("://images/visibility.svg"));
     DetectPkg_Check2 = new QCheckBox();
     connect(DetectPkg_Check2, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect2(int)));
     ui.treeWidget->addTopLevelItem(DetectPkg2);
@@ -260,67 +260,50 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     MarkerArray_2->setExpanded(true);
     ui.treeWidget->setItemWidget(MarkerArrayTopic_2, 1, MarkerArray_Topic_box2);
 
-    // //Map
-    // QTreeWidgetItem* Map=new QTreeWidgetItem(QStringList()<<"Map");
-    // //设置图标
-    // Map->setIcon(0,QIcon("://images/classes/Map.png"));
-    // //checkbox
-    // QCheckBox* Map_Check=new QCheckBox();
-    // connect(Map_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_Map(int)));
-    // //向Treewidget添加Map Top节点
-    // ui.treeWidget->addTopLevelItem(Map);
-    // //向Map添加checkbox
-    // ui.treeWidget->setItemWidget(Map,1,Map_Check);
-    // //Map topic
-    // QTreeWidgetItem* MapTopic=new QTreeWidgetItem(QStringList()<<"Topic");
-    // Map_Topic_box=new QComboBox();
-    // Map_Topic_box->addItem("/map");
-    // Map_Topic_box->setEditable(true);
-    // Map_Topic_box->setMaximumWidth(150);
-    // Map->addChild(MapTopic);
-    // ui.treeWidget->setItemWidget(MapTopic,1,Map_Topic_box);
-    // //Map color scheme
-    // QTreeWidgetItem* MapColorScheme=new QTreeWidgetItem(QStringList()<<"Color Scheme");
-    // Map_Color_Scheme_box=new QComboBox();
-    // Map_Color_Scheme_box->addItem("map");
-    // Map_Color_Scheme_box->addItem("costmap");
-    // Map_Color_Scheme_box->addItem("raw");
-    // Map_Color_Scheme_box->setMaximumWidth(150);
-    // Map->addChild(MapColorScheme);
-    // ui.treeWidget->setItemWidget(MapColorScheme,1,Map_Color_Scheme_box);
+    // package folder 3
+    QTreeWidgetItem* DetectPkg3 = new QTreeWidgetItem(QStringList() << "NJU Detect");
+    DetectPkg3->setIcon(0, QIcon("://images/visibility.svg"));
+    DetectPkg_Check3 = new QCheckBox();
+    connect(DetectPkg_Check3, SIGNAL(stateChanged(int)), this, SLOT(slot_display_detect3(int)));
+    ui.treeWidget->addTopLevelItem(DetectPkg3);
+    ui.treeWidget->setItemWidget(DetectPkg3, 1, DetectPkg_Check3);
 
-    // //Path
-    // QTreeWidgetItem* Path=new QTreeWidgetItem(QStringList()<<"Path");
-    // //设置图标
-    // Path->setIcon(0,QIcon("://images/classes/Path.png"));
-    // //checkbox
-    // QCheckBox* Path_Check=new QCheckBox();
-    // connect(Path_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_Path(int)));
-    // //向Treewidget添加Path Top节点
-    // ui.treeWidget->addTopLevelItem(Path);
-    // //向Path添加checkbox
-    // ui.treeWidget->setItemWidget(Path,1,Path_Check);
-    // //Path topic
-    // QTreeWidgetItem* PathTopic=new QTreeWidgetItem(QStringList()<<"Topic");
-    // Path_Topic_box=new QComboBox();
-    // Path_Topic_box->addItem("/path");
-    // Path_Topic_box->setEditable(true);
-    // Path_Topic_box->setMaximumWidth(150);
-    // Path->addChild(PathTopic);
-    // ui.treeWidget->setItemWidget(PathTopic,1,Path_Topic_box);
-    // //Path color scheme
-    // QTreeWidgetItem* PathColorScheme=new QTreeWidgetItem(QStringList()<<"Color");
-    // Path_Color_box=new QComboBox();
-    // Path_Color_box->addItem("0;12;255");
-    // Path_Color_box->setEditable(true);
-    // Path_Color_box->setMaximumWidth(150);
-    // Path->addChild(PathColorScheme);
-    // ui.treeWidget->setItemWidget(PathColorScheme,1,Path_Color_box);
+    QTreeWidgetItem* Pointcloud2_3 = new QTreeWidgetItem(QStringList() << "Lidar Pointcloud");
+    Pointcloud2_3->setIcon(0, QIcon("://images/PointCloud2.png"));
+    DetectPkg3->addChild(Pointcloud2_3);
+
+    //pcd topic
+    QTreeWidgetItem* PointCloudTopic_3 = new QTreeWidgetItem(QStringList() << "Topic");
+    PointCloud_Topic_box3 = new QComboBox();
+    PointCloud_Topic_box3->addItem("/njupt/1/pointcloud_compensated");
+    PointCloud_Topic_box3->setEditable(true);
+    PointCloud_Topic_box3->setMaximumWidth(150);
+    Pointcloud2_3->addChild(PointCloudTopic_3);
+    Pointcloud2_3->setExpanded(true);
+    ui.treeWidget->setItemWidget(PointCloudTopic_3, 1, PointCloud_Topic_box3);
+
+    //MarkerArray
+    QTreeWidgetItem* MarkerArray_3 = new QTreeWidgetItem(QStringList() << "MarkerArray");
+    //设置图标
+    MarkerArray_3->setIcon(0, QIcon("://images/classes/MarkerArray.png"));
+    //向Treewidget添加TF Top节点
+    DetectPkg3->addChild(MarkerArray_3);
+
+    //marker topic
+    QTreeWidgetItem* MarkerArrayTopic_3 = new QTreeWidgetItem(QStringList() << "Topic");
+    MarkerArray_Topic_box3 = new QComboBox();
+    MarkerArray_Topic_box3->addItem("/marker_new");
+    MarkerArray_Topic_box3->setEditable(true);
+    MarkerArray_Topic_box3->setMaximumWidth(150);
+    MarkerArray_3->addChild(MarkerArrayTopic_3);
+    MarkerArray_3->setExpanded(true);
+    ui.treeWidget->setItemWidget(MarkerArrayTopic_3, 1, MarkerArray_Topic_box3);
+
 
     //SLAM 相关UI********************************
     //slam plus***************************************
     QTreeWidgetItem* SlamPkg1=new QTreeWidgetItem(QStringList()<<"Ruby SLAM");
-    SlamPkg1->setIcon(0,QIcon("://images/default_package_icon.png"));
+    SlamPkg1->setIcon(0,QIcon("://images/Slam.png"));
     SlamPkg_Check1 = new QCheckBox();
     connect(SlamPkg_Check1,SIGNAL(stateChanged(int)),this,SLOT(slot_toggle_p80_slam(int)));
     ui.treeWidget->addTopLevelItem(SlamPkg1);
@@ -358,10 +341,10 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     ui.treeWidget->setItemWidget(Slam_Odom_Topic1, 1, Slam_Odom_Topic_box1);
 
     //slam2***********************************************
-    QTreeWidgetItem* SlamPkg2=new QTreeWidgetItem(QStringList()<<"M1 SLAM");
-    SlamPkg2->setIcon(0,QIcon("://images/default_package_icon.png"));
+    QTreeWidgetItem* SlamPkg2 = new QTreeWidgetItem(QStringList() << "M1 SLAM");
+    SlamPkg2->setIcon(0, QIcon("://images/Slam.png"));
     SlamPkg_Check2 = new QCheckBox();
-    connect(SlamPkg_Check2,SIGNAL(stateChanged(int)),this,SLOT(slot_toggle_m1_slam(int)));
+    connect(SlamPkg_Check2, SIGNAL(stateChanged(int)), this, SLOT(slot_toggle_m1_slam(int)));
     ui.treeWidget->addTopLevelItem(SlamPkg2);
     ui.treeWidget->setItemWidget(SlamPkg2, 1, SlamPkg_Check2);
 
@@ -396,22 +379,79 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     ui.treeWidget->setItemWidget(Slam_Odom_Topic2, 1, Slam_Odom_Topic_box2);
 
 
+    //slam3=============
+    QTreeWidgetItem* SlamPkg3 = new QTreeWidgetItem(QStringList() << "NJU SLAM");
+    SlamPkg3->setIcon(0, QIcon("://images/Slam.png"));
+    SlamPkg_Check3 = new QCheckBox();
+    connect(SlamPkg_Check3, SIGNAL(stateChanged(int)), this, SLOT(slot_toggle_new_slam(int)));
+    ui.treeWidget->addTopLevelItem(SlamPkg3);
+    ui.treeWidget->setItemWidget(SlamPkg3, 1, SlamPkg_Check3);
+
+    QTreeWidgetItem* Slam_Pointcloud2_Registered_3 = new QTreeWidgetItem(QStringList() << "Pointcloud");
+    Slam_Pointcloud2_Registered_3->setIcon(0, QIcon("://images/PointCloud2.png"));
+    SlamPkg3->addChild(Slam_Pointcloud2_Registered_3);
+
+    //pcd topic
+    QTreeWidgetItem* Slam_Pointcloud2_Registered_Topic_3 = new QTreeWidgetItem(QStringList() << "Topic");
+    Slam_Pcd_Reg_Topic_box3 = new QComboBox();
+    Slam_Pcd_Reg_Topic_box3->addItem("/pointcloud_registered");
+    Slam_Pcd_Reg_Topic_box3->setEditable(true);
+    Slam_Pcd_Reg_Topic_box3->setMaximumWidth(150);
+    Slam_Pointcloud2_Registered_3->addChild(Slam_Pointcloud2_Registered_Topic_3);
+    Slam_Pointcloud2_Registered_3->setExpanded(true);
+    ui.treeWidget->setItemWidget(Slam_Pointcloud2_Registered_Topic_3, 1, Slam_Pcd_Reg_Topic_box3);
+
+    QTreeWidgetItem* Slam_Odom3 = new QTreeWidgetItem(QStringList() << "Odometry");
+    //设置图标
+    Slam_Odom3->setIcon(0, QIcon("://images/classes/Odometry.png"));
+    //向TLocal Map添加Path Top节点
+    SlamPkg3->addChild(Slam_Odom3);
+
+    //Odom topic
+    QTreeWidgetItem* Slam_Odom_Topic3 = new QTreeWidgetItem(QStringList() << "Topic");
+    Slam_Odom_Topic_box3 = new QComboBox();
+    Slam_Odom_Topic_box3->addItem("/Odometry");
+    Slam_Odom_Topic_box3->setEditable(true);
+    Slam_Odom_Topic_box3->setMaximumWidth(150);
+    Slam_Odom3->addChild(Slam_Odom_Topic3);
+    Slam_Odom3->setExpanded(true);
+    ui.treeWidget->setItemWidget(Slam_Odom_Topic3, 1, Slam_Odom_Topic_box3);
+
+
     //connect
     connect(&qnode,SIGNAL(speed_vel(float,float)),this,SLOT(slot_update_dashboard(float,float)));
     // connect(&qnode,SIGNAL(power_vel(float)),this,SLOT(slot_update_power(float)));
     connect(&qnode,SIGNAL(image_val(QImage)),this,SLOT(slot_update_image(QImage)));
     connect(&qnode,SIGNAL(position(double,double,double)),this,SLOT(slot_update_pos(double,double,double)));
     connect(ui.pushButton_sub_image,SIGNAL(clicked()),this,SLOT(slot_sub_image()));
-    connect(ui.laser_btn,SIGNAL(clicked()),this,SLOT(slot_quick_cmd_clicked()));
+    // connect(ui.laser_btn,SIGNAL(clicked()),this,SLOT(slot_quick_cmd_clicked()));
     //set start pose
-    connect(ui.m1_det_btn,SIGNAL(clicked()),this,SLOT(slot_toggle_m1_det()));
-    connect(ui.p80_det_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_p80_det()));
-    connect(ui.m1_slam_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_m1_slam()));
-    connect(ui.p80_slam_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_p80_slam()));
-
+    connect(ui.det_btn,SIGNAL(clicked()),this,SLOT(slot_toggle_det()));
+    connect(ui.slam_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_slam()));
 
 }
+
+void MainWindow::slot_toggle_slam() {
+    switch (ui.RadarSelectBox->currentIndex()) {
+    case 0:
+        slot_toggle_m1_slam();
+        break;
+    case 1:
+        slot_toggle_p80_slam();
+        break;
+    case 2:
+        slot_toggle_new_slam();
+        break;
+    default:
+        break;
+    }
+}
 void MainWindow::slot_toggle_m1_slam() {
+    DetectPkg_Check1->setChecked(false);
+    DetectPkg_Check2->setChecked(false);
+    DetectPkg_Check3->setChecked(false);
+    SlamPkg_Check1->setChecked(false);
+    SlamPkg_Check3->setChecked(false);
     switch (SlamPkg_Check2->checkState()) {
     case CheckState::Checked:
         SlamPkg_Check2->setChecked(false);
@@ -424,12 +464,34 @@ void MainWindow::slot_toggle_m1_slam() {
     }
 }
 void MainWindow::slot_toggle_p80_slam() {
+    DetectPkg_Check1->setChecked(false);
+    DetectPkg_Check2->setChecked(false);
+    DetectPkg_Check3->setChecked(false);
+    SlamPkg_Check3->setChecked(false);
+    SlamPkg_Check2->setChecked(false);
     switch (SlamPkg_Check1->checkState()) {
     case CheckState::Checked:
         SlamPkg_Check1->setChecked(false);
         break;
     case CheckState::Unchecked:
         SlamPkg_Check1->setChecked(true);
+        break;
+    default:
+        break;
+    }
+}
+void MainWindow::slot_toggle_new_slam() {
+    DetectPkg_Check1->setChecked(false);
+    DetectPkg_Check2->setChecked(false);
+    DetectPkg_Check3->setChecked(false);
+    SlamPkg_Check1->setChecked(false);
+    SlamPkg_Check2->setChecked(false);
+    switch (SlamPkg_Check3->checkState()) {
+    case CheckState::Checked:
+        SlamPkg_Check3->setChecked(false);
+        break;
+    case CheckState::Unchecked:
+        SlamPkg_Check3->setChecked(true);
         break;
     default:
         break;
@@ -446,6 +508,12 @@ void MainWindow::slot_toggle_p80_slam(int state) {
     myrviz->Display_SLAM_PointCloud2_Registered_1(Slam_Pcd_Reg_Topic_box1->currentText(), enable);
     myrviz->Display_SLAM_PointCloud2_Queued_1(Slam_Pcd_Reg_Topic_box1->currentText(), enable);
     myrviz->Display_SLAM_Odometry_1(Slam_Odom_Topic_box1->currentText(), enable);
+}
+void MainWindow::slot_toggle_new_slam(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_SLAM_PointCloud2_Registered_3(Slam_Pcd_Reg_Topic_box3->currentText(), enable);
+    myrviz->Display_SLAM_PointCloud2_Queued_3(Slam_Pcd_Reg_Topic_box3->currentText(), enable);
+    myrviz->Display_SLAM_Odometry_3(Slam_Odom_Topic_box3->currentText(), enable);
 }
 void MainWindow::slot_update_pos(double x,double y,double z)
 {
@@ -467,8 +535,27 @@ void MainWindow::slot_display_global_map(int state)
       QColor color=QColor(qli[0].toInt(),qli[1].toInt(),qli[2].toInt());
       myrviz->Display_Global_Map(Global_CostMap_Topic_box->currentText(),GlobalMapColorScheme_box->currentText(),Global_Planner_Topic_box->currentText(),color,enable);
 }
-void MainWindow::slot_toggle_m1_det()
-{
+void MainWindow::slot_toggle_det() {
+    switch (ui.RadarSelectBox->currentIndex()) {
+    case 0:
+        slot_toggle_m1_det();
+        break;
+    case 1:
+        slot_toggle_p80_det();
+        break;
+    case 2:
+        slot_toggle_new_det();
+        break;
+    default:
+        break;
+    }
+}
+void MainWindow::slot_toggle_m1_det() {
+    SlamPkg_Check1->setChecked(false);
+    SlamPkg_Check2->setChecked(false);
+    SlamPkg_Check3->setChecked(false);
+    DetectPkg_Check1->setChecked(false);
+    DetectPkg_Check3->setChecked(false);
     switch (DetectPkg_Check2->checkState())
     {
     case CheckState::Checked:
@@ -481,14 +568,35 @@ void MainWindow::slot_toggle_m1_det()
         break;
     }
 }
-void MainWindow::slot_toggle_p80_det()
-{
+void MainWindow::slot_toggle_p80_det() {
+    SlamPkg_Check1->setChecked(false);
+    SlamPkg_Check2->setChecked(false);
+    SlamPkg_Check3->setChecked(false);
+    DetectPkg_Check2->setChecked(false);
+    DetectPkg_Check3->setChecked(false);
     switch (DetectPkg_Check1->checkState()) {
     case CheckState::Checked:
         DetectPkg_Check1->setChecked(false);
         break;
     case CheckState::Unchecked:
         DetectPkg_Check1->setChecked(true);
+        break;
+    default:
+        break;
+    }
+}
+void MainWindow::slot_toggle_new_det() {
+    SlamPkg_Check1->setChecked(false);
+    SlamPkg_Check2->setChecked(false);
+    SlamPkg_Check3->setChecked(false);
+    DetectPkg_Check1->setChecked(false);
+    DetectPkg_Check2->setChecked(false);
+    switch (DetectPkg_Check3->checkState()) {
+    case CheckState::Checked:
+        DetectPkg_Check3->setChecked(false);
+        break;
+    case CheckState::Unchecked:
+        DetectPkg_Check3->setChecked(true);
         break;
     default:
         break;
@@ -526,6 +634,11 @@ void MainWindow::slot_display_detect2(int state) {
     myrviz->Display_PointCloud2_2(PointCloud_Topic_box2->currentText(), enable);
     myrviz->Display_MarkerArray_2(MarkerArray_Topic_box2->currentText(), enable);
 }
+void MainWindow::slot_display_detect3(int state) {
+    bool enable = state > 1 ? true : false;
+    myrviz->Display_PointCloud2_3(PointCloud_Topic_box3->currentText(), enable);
+    myrviz->Display_MarkerArray_3(MarkerArray_Topic_box3->currentText(), enable);
+}
 void MainWindow::slot_display_axes(int state) {
     bool enable = state > 1 ? true : false;
     myrviz->Display_Axes(enable);
@@ -548,17 +661,17 @@ void MainWindow::slot_treewidget_value_change(QString)
 }
 void MainWindow::slot_quick_cmd_clicked()
 {
-    laser_cmd=new QProcess;
-    laser_cmd->start("bash");
-    laser_cmd->write(ui.textEdit_laser_cmd->toPlainText().toLocal8Bit()+'\n');
-    connect(laser_cmd,SIGNAL(readyReadStandardError()),this,SLOT(slot_quick_output()));
-    connect(laser_cmd,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_quick_output()));
+    // laser_cmd=new QProcess;
+    // laser_cmd->start("bash");
+    // laser_cmd->write(ui.textEdit_laser_cmd->toPlainText().toLocal8Bit()+'\n');
+    // connect(laser_cmd,SIGNAL(readyReadStandardError()),this,SLOT(slot_quick_output()));
+    // connect(laser_cmd,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_quick_output()));
 
 }
 void MainWindow::slot_quick_output()
 {
-    ui.textEdit_quick_output->append("<font color=\"#FF0000\">"+laser_cmd->readAllStandardError()+"</font>");
-    ui.textEdit_quick_output->append("<font color=\"#FFFFFF\">"+laser_cmd->readAllStandardOutput()+"</font>");
+    // ui.textEdit_quick_output->append("<font color=\"#FF0000\">"+laser_cmd->readAllStandardError()+"</font>");
+    // ui.textEdit_quick_output->append("<font color=\"#FFFFFF\">"+laser_cmd->readAllStandardOutput()+"</font>");
 }
 void MainWindow::slot_update_image(QImage im)
 {
@@ -585,46 +698,46 @@ void MainWindow::slot_update_dashboard(float x,float y)
 }
 void MainWindow::slot_pushbtn_click()
 {
-  QPushButton* btn=qobject_cast<QPushButton*> (sender());
-  char k=btn->text().toStdString()[0];
-  bool is_all=ui.checkBox_is_all->isChecked();
-  float linear=ui.label_linera->text().toFloat()*0.01;
-  float angular=ui.label_raw->text().toFloat()*0.01;
+//   QPushButton* btn=qobject_cast<QPushButton*> (sender());
+//   char k=btn->text().toStdString()[0];
+//   bool is_all=ui.checkBox_is_all->isChecked();
+//   float linear=ui.label_linera->text().toFloat()*0.01;
+//   float angular=ui.label_raw->text().toFloat()*0.01;
 
-  switch (k) {
-    case 'i':
-      qnode.set_cmd_vel(is_all?'I':'i',linear,angular);
-      break;
-  case 'u':
-    qnode.set_cmd_vel(is_all?'U':'u',linear,angular);
-    break;
-  case 'o':
-    qnode.set_cmd_vel(is_all?'O':'o',linear,angular);
-    break;
-  case 'j':
-    qnode.set_cmd_vel(is_all?'J':'j',linear,angular);
-    break;
-  case 'l':
-    qnode.set_cmd_vel(is_all?'L':'l',linear,angular);
-    break;
-  case 'm':
-    qnode.set_cmd_vel(is_all?'M':'m',linear,angular);
-    break;
-  case ',':
-    qnode.set_cmd_vel(is_all?'<':',',linear,angular);
-    break;
-  case '.':
-    qnode.set_cmd_vel(is_all?'>':'.',linear,angular);
-    break;
-  }
+//   switch (k) {
+//     case 'i':
+//       qnode.set_cmd_vel(is_all?'I':'i',linear,angular);
+//       break;
+//   case 'u':
+//     qnode.set_cmd_vel(is_all?'U':'u',linear,angular);
+//     break;
+//   case 'o':
+//     qnode.set_cmd_vel(is_all?'O':'o',linear,angular);
+//     break;
+//   case 'j':
+//     qnode.set_cmd_vel(is_all?'J':'j',linear,angular);
+//     break;
+//   case 'l':
+//     qnode.set_cmd_vel(is_all?'L':'l',linear,angular);
+//     break;
+//   case 'm':
+//     qnode.set_cmd_vel(is_all?'M':'m',linear,angular);
+//     break;
+//   case ',':
+//     qnode.set_cmd_vel(is_all?'<':',',linear,angular);
+//     break;
+//   case '.':
+//     qnode.set_cmd_vel(is_all?'>':'.',linear,angular);
+//     break;
+//   }
 }
 void MainWindow::slot_linera_value_change(int value)
 {
-    ui.label_linera->setText(QString::number(value));
+    // ui.label_linera->setText(QString::number(value));
 }
 void MainWindow::slot_raw_value_change(int value)
 {
-    ui.label_raw->setText(QString::number(value));
+    // ui.label_raw->setText(QString::number(value));
 }
 MainWindow::~MainWindow() {}
 

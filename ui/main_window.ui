@@ -46,158 +46,127 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_16">
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_13">
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_11">
-                <property name="spacing">
-                 <number>0</number>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="det_btn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>120</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>障碍物检测</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources/images.qrc">
+                  <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>雷达选择</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QComboBox" name="CameraSelectBox">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="m1_det_btn">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>120</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>M1目标检测</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
-                  </property>
-                 </widget>
+                 <property name="text">
+                  <string>无融合算法</string>
+                 </property>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="p80_det_btn">
-                  <property name="minimumSize">
-                   <size>
-                    <width>120</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Ruby目标检测</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
-                  </property>
-                 </widget>
+                 <property name="text">
+                  <string>相机1</string>
+                 </property>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton">
-                  <property name="minimumSize">
-                   <size>
-                    <width>120</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>新研目标检测</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/visibility.svg</normaloff>:/images/visibility.svg</iconset>
-                  </property>
-                 </widget>
+                 <property name="text">
+                  <string>相机2</string>
+                 </property>
                 </item>
-                <item>
-                 <widget class="QPushButton" name="m1_slam_btn">
-                  <property name="minimumSize">
-                   <size>
-                    <width>120</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>M1 SLAM建图</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="p80_slam_btn">
-                  <property name="minimumSize">
-                   <size>
-                    <width>120</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Ruby SLAM建图</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_2">
-                  <property name="minimumSize">
-                   <size>
-                    <width>120</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>新研SLAM建图</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               </widget>
               </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="slam_btn">
+                <property name="minimumSize">
+                 <size>
+                  <width>120</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>场景建模</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources/images.qrc">
+                  <normaloff>:/images/Slam.png</normaloff>:/images/Slam.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="RadarSelectBox">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Robosense M1</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Robosense Ruby Plus</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>新研焦平面雷达</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>障碍物检测融合传感器选择</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
               <item>
                <layout class="QVBoxLayout" name="layout_rviz"/>
               </item>
@@ -386,11 +355,14 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
-          <widget class="QWidget" name="tab_4">
+          <property name="usesScrollButtons">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="tab_disp">
            <attribute name="title">
-            <string>rviz</string>
+            <string>界面设置</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_15">
             <item>
@@ -447,9 +419,9 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="tab_ros">
            <attribute name="title">
-            <string>Tab 1</string>
+            <string>ROS设置</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
@@ -614,198 +586,6 @@
                       </property>
                      </spacer>
                     </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_5">
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_2">
-                        <item>
-                         <widget class="QPushButton" name="pushButton_u">
-                          <property name="text">
-                           <string>u</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>U</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pushButton_i">
-                          <property name="text">
-                           <string>i</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>I</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pushButton_o">
-                          <property name="text">
-                           <string>o</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>O</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_3">
-                        <item>
-                         <widget class="QPushButton" name="pushButton_j">
-                          <property name="text">
-                           <string>j</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>J</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QCheckBox" name="checkBox_is_all">
-                          <property name="text">
-                           <string>全向轮模式</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>K</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pushButton_l">
-                          <property name="text">
-                           <string>l</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>L</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_4">
-                        <item>
-                         <widget class="QPushButton" name="pushButton_n">
-                          <property name="text">
-                           <string>m</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>M</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pushButton_m">
-                          <property name="text">
-                           <string>,</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>,</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pushButton_br">
-                          <property name="text">
-                           <string>.</string>
-                          </property>
-                          <property name="shortcut">
-                           <string>.</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_5">
-                        <item>
-                         <widget class="QLabel" name="label_4">
-                          <property name="text">
-                           <string>线速度：</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSlider" name="horizontalSlider_linera">
-                          <property name="maximum">
-                           <number>100</number>
-                          </property>
-                          <property name="value">
-                           <number>0</number>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_linera">
-                          <property name="minimumSize">
-                           <size>
-                            <width>30</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>30</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>0</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_6">
-                        <item>
-                         <widget class="QLabel" name="label_5">
-                          <property name="text">
-                           <string>角速度：</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSlider" name="horizontalSlider_raw">
-                          <property name="maximum">
-                           <number>100</number>
-                          </property>
-                          <property name="value">
-                           <number>0</number>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_raw">
-                          <property name="minimumSize">
-                           <size>
-                            <width>20</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>20</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>0</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
                    </layout>
                   </item>
                  </layout>
@@ -816,59 +596,158 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_2">
+          <widget class="QWidget" name="tab_param">
            <attribute name="title">
-            <string>Tab 2</string>
+            <string>参数设置</string>
            </attribute>
-           <widget class="QGroupBox" name="groupBox_2">
+           <widget class="QFrame" name="frame_3">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>40</y>
-              <width>391</width>
-              <height>131</height>
+              <x>10</x>
+              <y>10</y>
+              <width>378</width>
+              <height>724</height>
              </rect>
             </property>
-            <property name="title">
-             <string>激光雷达</string>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <widget class="QPushButton" name="laser_btn">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>100</y>
-               <width>111</width>
-               <height>25</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>打开激光雷达</string>
-             </property>
-            </widget>
-            <widget class="QTextEdit" name="textEdit_laser_cmd">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>30</y>
-               <width>301</width>
-               <height>51</height>
-              </rect>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QTextEdit" name="textEdit_quick_output">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>280</y>
-              <width>391</width>
-              <height>111</height>
-             </rect>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
             </property>
-            <property name="styleSheet">
-             <string notr="true">background:rgb(0, 0, 0)
-</string>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
             </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QGroupBox" name="groupBox_3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="title">
+                <string>目标检测</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_18">
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_4">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_22">
+                    <property name="text">
+                     <string>Z轴检测阈值</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QPushButton" name="pushButton_2">
+                    <property name="text">
+                     <string>写入参数文件</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEdit_4"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_23">
+                    <property name="text">
+                     <string>X轴检测阈值</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="lineEdit_5"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="lineEdit_6"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_24">
+                    <property name="text">
+                     <string>Y轴检测阈值</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="title">
+                <string>SLAM</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_17">
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_3">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_10">
+                    <property name="text">
+                     <string>时间矫正偏移</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QPushButton" name="pushButton">
+                    <property name="text">
+                     <string>写入参数文件</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEdit"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_4">
+                    <property name="text">
+                     <string>加速度协方差</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="lineEdit_2"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="lineEdit_3"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_5">
+                    <property name="text">
+                     <string>角速度协方差</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </widget>
           </widget>
          </widget>
