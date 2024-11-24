@@ -111,8 +111,8 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     ui.treeWidget->addTopLevelItem(Grid);
     //添加checkbox
     ui.treeWidget->setItemWidget(Grid, 1, Grid_Check);
-    //设置grid默认展开状态
-    Grid->setExpanded(true);
+    //设置grid默认折叠状态
+    Grid->setExpanded(false);
 
     //添加Cell Count子节点
     QTreeWidgetItem* Cell_Count=new QTreeWidgetItem(QStringList()<<"Plane Cell Count");
@@ -157,9 +157,9 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     QCheckBox* TF_Check=new QCheckBox();
     connect(TF_Check,SIGNAL(stateChanged(int)),this,SLOT(slot_display_tf(int)));
     //向Treewidget添加TF Top节点
-    ui.treeWidget->addTopLevelItem(TF);
+    // ui.treeWidget->addTopLevelItem(TF);
     //向TF添加checkbox
-    ui.treeWidget->setItemWidget(TF,1,TF_Check);
+    // ui.treeWidget->setItemWidget(TF,1,TF_Check);
 
     // //LaserScan
     // QTreeWidgetItem* LaserScan=new QTreeWidgetItem(QStringList()<<"LaserScan");
@@ -452,6 +452,7 @@ void MainWindow::slot_toggle_m1_slam() {
     DetectPkg_Check3->setChecked(false);
     SlamPkg_Check1->setChecked(false);
     SlamPkg_Check3->setChecked(false);
+    fixed_box->setCurrentText("camera_init");
     switch (SlamPkg_Check2->checkState()) {
     case CheckState::Checked:
         SlamPkg_Check2->setChecked(false);
@@ -469,6 +470,7 @@ void MainWindow::slot_toggle_p80_slam() {
     DetectPkg_Check3->setChecked(false);
     SlamPkg_Check3->setChecked(false);
     SlamPkg_Check2->setChecked(false);
+    fixed_box->setCurrentText("camera_init");
     switch (SlamPkg_Check1->checkState()) {
     case CheckState::Checked:
         SlamPkg_Check1->setChecked(false);
@@ -486,6 +488,7 @@ void MainWindow::slot_toggle_new_slam() {
     DetectPkg_Check3->setChecked(false);
     SlamPkg_Check1->setChecked(false);
     SlamPkg_Check2->setChecked(false);
+    fixed_box->setCurrentText("camera_init");
     switch (SlamPkg_Check3->checkState()) {
     case CheckState::Checked:
         SlamPkg_Check3->setChecked(false);
@@ -556,6 +559,7 @@ void MainWindow::slot_toggle_m1_det() {
     SlamPkg_Check3->setChecked(false);
     DetectPkg_Check1->setChecked(false);
     DetectPkg_Check3->setChecked(false);
+    fixed_box->setCurrentText("rslidar");
     switch (DetectPkg_Check2->checkState())
     {
     case CheckState::Checked:
@@ -574,6 +578,7 @@ void MainWindow::slot_toggle_p80_det() {
     SlamPkg_Check3->setChecked(false);
     DetectPkg_Check2->setChecked(false);
     DetectPkg_Check3->setChecked(false);
+    fixed_box->setCurrentText("rslidar");
     switch (DetectPkg_Check1->checkState()) {
     case CheckState::Checked:
         DetectPkg_Check1->setChecked(false);
@@ -591,6 +596,7 @@ void MainWindow::slot_toggle_new_det() {
     SlamPkg_Check3->setChecked(false);
     DetectPkg_Check1->setChecked(false);
     DetectPkg_Check2->setChecked(false);
+    fixed_box->setCurrentText("njupt/1/sensor");
     switch (DetectPkg_Check3->checkState()) {
     case CheckState::Checked:
         DetectPkg_Check3->setChecked(false);
