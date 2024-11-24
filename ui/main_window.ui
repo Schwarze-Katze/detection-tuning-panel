@@ -631,7 +631,7 @@
                 </sizepolicy>
                </property>
                <property name="title">
-                <string>目标检测</string>
+                <string>障碍物检测</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_18">
                 <item>
@@ -687,7 +687,7 @@
                 </sizepolicy>
                </property>
                <property name="title">
-                <string>SLAM</string>
+                <string>场景建模</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_17">
                 <item>
