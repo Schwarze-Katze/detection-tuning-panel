@@ -428,7 +428,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //set start pose
     connect(ui.det_btn,SIGNAL(clicked()),this,SLOT(slot_toggle_det()));
     connect(ui.slam_btn, SIGNAL(clicked()), this, SLOT(slot_toggle_slam()));
-    QMessageBox::warning(this, QStringLiteral("输入类型错误!"), QStringLiteral("请输入数字格式的参数"), QMessageBox::Ok);
+
 }
 
 void MainWindow::slot_toggle_slam() {
